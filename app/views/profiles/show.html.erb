@@ -1,0 +1,61 @@
+<% @profile.inspect %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Información Personal</div>  
+  <div class="panel-body">
+    <div class="row">
+        <div class="col-md-12">
+            <label>Nombres completos:</label>
+            <%= @profile.nombres %>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label>Apellidos:</label>
+            <%= @profile.ap_paterno %> <%= @profile.ap_materno %>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">    
+            <label>Acerca de mí:</label>
+        </div>
+        <div class="col-md-12">
+            <%= @profile.descripcion %><%= @profile.descripcion %>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Información de Ubicación</div>  
+  <div class="panel-body">
+    <div class="row">
+        <div class="col-md-12">
+            <label>Dirección:</label>
+            <%= @profile.direccion %>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Información de Contacto</div>  
+  <div class="panel-body">
+
+    <div class="row">
+        <div class="col-md-12">
+            <label>Teléfonos:</label>
+            <% @profile.profile_phones.each do |p| %>
+                <% if( p.num_telefono != '' )  %>
+                    <% phone_type = PhoneType.find(p.phone_type_id) %>
+                    <li><%= phone_type.nombre_tip_telefono %>: <%= p.num_telefono %></li>
+                <% else %>
+                    <li>Ninguna</li>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+    
+  </div>
+</div>
+

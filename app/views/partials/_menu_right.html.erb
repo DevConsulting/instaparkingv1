@@ -1,0 +1,19 @@
+<% if user_signed_in? %>  
+    <% if(current_user.profile.nombres != '') %> 
+        <p class="navbar-text">Bienvenido: <%= link_to current_user.profile.nombres, controller: "profiles", action: "show", id: current_user.profile.id %></p>
+    <% else %>
+        <p class="navbar-text">Bienvenido: <%= link_to current_user.email, controller: "profiles", action: "show", id: current_user.profile.id %></p>
+    <% end %>
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Configuraciones <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <!-- Aplicando Link para Mostrar perfil  -->        
+          <li><%= link_to "Editar Perfil", controller: "profiles", action: "edit", id: current_user.profile.id %></li>
+          <li><a href="#">Cambiar Contrasena</a></li>
+          <li><%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete  %></li>
+        </ul>
+    </li>
+<% else %>
+    <li><%= link_to "Iniciar sesión", new_user_session_path %></li>
+    <li><%= link_to "Crear Cuenta", new_user_registration_path %></li>
+<% end  %>

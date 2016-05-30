@@ -1,0 +1,71 @@
+<%= simple_form_for @profile, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="panel panel-default">
+    <div class="panel-heading">Información Personal</div>  
+    <div class="panel-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <%= f.input :nombres, label: 'Nombre completo', required: true %>
+            <%= f.input :ap_paterno, label: 'Apellido paterno', required: true %>
+            <%= f.input :ap_materno, label: 'Apellido materno', required: true %>
+            <%= f.input :descripcion, label: 'Información briografíca', as: :text %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">Información de Ubicación</div>
+    <div class="panel-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                  
+                  <%= f.input :direccion, label: 'Dirección', required: true %>
+                  <%= error_span(@profile[:direccion]) %>
+                 
+                  <%= f.input :id_dpto, :collection => [['Lima',1],['Callao',2]], label: 'Departamento' %>
+                  <%= error_span(@profile[:id_dpto]) %> 
+                  
+                  <%= f.input :id_prov, :collection => [['Lima',1],['Callao',2]], label: 'Provincia' %>
+                  <%= error_span(@profile[:id_prov]) %> 
+                  
+                  <%= f.input :id_dist, :collection => [['San Juan de Lurigancho',1],['San Isidro',2]], label: 'Distrito' %>
+                  <%= error_span(@profile[:id_dist]) %>
+                  
+                </div>
+            </div>  
+        </div>  
+    </div>  
+  </div>
+  
+  <div class="panel panel-default">
+    <div class="panel-heading">Información Contacto</div>
+    <div class="panel-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+
+                  <%= f.fields_for :profile_phones do |ff| %>
+                      <% phone_type = PhoneType.find(ff.object.phone_type_id) %>
+                      <%= ff.input :id, as: :hidden %>
+                      <%= ff.input :num_telefono, label: phone_type.nombre_tip_telefono, input_html: { id: ff.object.id }  %>
+                  <% end %>
+                  
+                </div>
+            </div>  
+        </div>  
+    </div>  
+  </div>
+  
+  <div class="container">
+    <div class="row">  
+      <div class="col-md-8">
+        <%= f.button :submit, :class => 'btn-primary', value: 'Guardar' %>
+        <%= link_to "Cancelar", { controller: "profiles", action: "show", id: @profile }, class: "btn btn-default" %>
+      </div>
+    </div>
+  </div>
+  
+<% end %> 
