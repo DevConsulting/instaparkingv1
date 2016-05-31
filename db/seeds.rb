@@ -8,7 +8,17 @@
 
 
 # Creando Tipo de Número Telefonicos
-    phone_type = PhoneType.create([
-        {nombre_tip_telefono: "Celular"},
-        {nombre_tip_telefono: "Fijo"}
-    ]);
+phone_type = PhoneType.create([
+    {nombre_tip_telefono: "Celular"},
+    {nombre_tip_telefono: "Fijo"}
+]);
+
+# Creando Paises
+UbCountry.create([
+    {nom_pais: "Perú"}
+]);
+
+# Creando Departamentos
+#UbDepartment.create([
+ #   {nom_dpto: ""}
+#]);*/

@@ -13,9 +13,6 @@ class CreateProfiles < ActiveRecord::Migration
       t.string :descripcion # Descripción del Perfil
       t.string :direccion   # Dirección
       t.string :avatar      # Foto
-      t.integer :id_dpto    # Departamento
-      t.integer :id_prov    # Provincia
-      t.integer :id_dist    # Distrito
       
       t.timestamps null: false
       
