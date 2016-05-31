@@ -1,7 +1,9 @@
 class PagesController < ApplicationController
   
+  layout "home_layout", only: [:index]
+  
   def index
-    
+  
   end
 
   def about_us
@@ -16,9 +18,5 @@ class PagesController < ApplicationController
   def contact_us
   
   end
-  
-  def pruebas
-    return "sfkjndfksjdnfkjsdnjk"
-  end
-  
+
 end
