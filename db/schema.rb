@@ -37,6 +37,9 @@ ActiveRecord::Schema.define(version: 20160531005610) do
     t.string   "descripcion",      limit: 255
     t.string   "direccion",        limit: 255
     t.string   "avatar",           limit: 255
+    t.integer  "id_dpto",          limit: 4
+    t.integer  "id_prov",          limit: 4
+    t.integer  "id_dist",          limit: 4
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.integer  "user_id",          limit: 4
