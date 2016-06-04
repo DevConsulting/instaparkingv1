@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :contactos
   devise_for :users
   
   root 'pages#index' #get 'pages/index'
