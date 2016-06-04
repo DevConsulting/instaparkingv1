@@ -15,9 +15,25 @@ Rails.application.routes.draw do
   get 'pages/pruebas'
   
   
-  # Aplicando Rercursos
+  # Aplicando Recursos 
+  
+  # Perfiles
   resources :profiles
   
+  # Ubigeo Países
+  resources :ub_countries
+  
+  # Ubigeo - Departamentos
+  resources :ub_departments
+  
+  # Ubigeo - Provincias
+  resources :ub_provinces
+  
+  # Ubigeo - Lista de Departamentos
+  get "/deparments/:country/" => "ub_departments#show"
+  
+  # Ubigeo - Lista de Provincias
+  get "/provinces/:deparment/" => "ub_provinces#showProvinces"
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

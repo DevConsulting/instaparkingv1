@@ -68,8 +68,9 @@ ActiveRecord::Schema.define(version: 20160531005610) do
   add_index "ub_departments", ["ub_country_id"], name: "index_ub_departments_on_ub_country_id", using: :btree
 
   create_table "ub_districts", force: :cascade do |t|
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.string   "nom_dist",         limit: 255
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.integer  "ub_department_id", limit: 4
     t.integer  "ub_province_id",   limit: 4
   end
