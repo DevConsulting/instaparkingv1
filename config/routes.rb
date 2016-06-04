@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   
   get 'pages/pruebas'
   
+  get 'pages/busqueda'
+  
   
   # Aplicando Rercursos
   resources :profiles
