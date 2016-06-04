@@ -1,7 +1,8 @@
 class Contacto < ActiveRecord::Base
-    
-    validates :nombre, presence: true
-    validates :correo, presence: true
-    validates :mensaje, presence: true
-    
+
+    validates :nombre, presence: {message: "El campo no puede quedar vacio .."}
+    validates :correo, presence: {message: "El campo no puede quedar vacio .."}
+    validates :mensaje, presence: {message: "El campo no puede quedar vacio .."}
+
 end
+
