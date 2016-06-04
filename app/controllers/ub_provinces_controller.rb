@@ -7,7 +7,7 @@ class UbProvincesController < ApplicationController
     
     # GET /provinces/:deparment/
     def showProvinces
-        @provinces = UbProvince.where(ub_department_id: params[:deparment])
+        @provinces = UbProvince.where(ub_department_id: params[:department])
         render json: @provinces
     end
     

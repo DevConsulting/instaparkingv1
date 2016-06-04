@@ -33,7 +33,10 @@ Rails.application.routes.draw do
   get "/deparments/:country/" => "ub_departments#show"
   
   # Ubigeo - Lista de Provincias
-  get "/provinces/:deparment/" => "ub_provinces#showProvinces"
+  get "/provinces/:department/" => "ub_provinces#showProvinces"
+  
+  # Ubigeo - LIsta de Distritos
+  get "/districts/:department/:province/" => "ub_districts#showDistricts"
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
