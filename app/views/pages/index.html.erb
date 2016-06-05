@@ -1,20 +1,76 @@
-<!-- Buscador  -->
+<!-- PAGINA INDEX - Buscador  -->
 <div id="bg">
-<section class="buscador">
   <div class="row row-centered block_buscador">
     <div class="col-lg-12">
-      <h2>Busca tu espacio</h2>
+      <div id="uc_header1_updUBuscador">
+      	<h2>BUSCA TU ESPACIO</h2>
+      		<div class="pestanas">
+            <button type="button" class="btn btn-default btn-sm">Busqueda por Dirección</button>
+            <button type="button" class="btn btn-info btn-sm">Busqueda por distrito</button>      
+      		</div>
+      		<div class="bloque por-direccion">
+      			<div class="center-block formulario">
+      				<div class="form-group center-block">
+              	<input name="uc_header1$txtDireccionBuscador" type="text" id="txtDireccionBuscador" class="inputbox form-control" placeholder="Ingrese dirección">
+              		<div>
+               			<input type="image" name="uc_header1$imbBuscar2" id="uc_header1_imbBuscar2" class="submit center-block" src="/assets/buscar.png" onclick="return validarTab1();" style="border-width:0px;">
+      						</div>
+      				</div>
+      				<div class="bloque por-distrito" style="display:none">
+      					<div class="center-block formulario">
+      						<div class="row">
+                  	<div class="col-sm-4">
+      								<div class="form-group">
+                        <select name="uc_header1$ddlDepartamento" onchange="javascript:setTimeout('__doPostBack(\'uc_header1$ddlDepartamento\',\'\')', 0)" id="uc_header1_ddlDepartamento" class="form-control inputselectbox">
+      										<option selected="selected" value="0">Departamento</option>
+      											<option value="040000">AREQUIPA</option>
+      											<option value="060000">CAJAMARCA</option>
+      											<option value="070000">CALLAO</option>
+      											<option value="080000">CUSCO</option>
+      											<option value="110000">ICA</option>
+      											<option value="150000">LIMA</option>
+      											<option value="200000">PIURA</option>
+      									</select>
+      								</div>
+      							</div>
+      							<div class="col-sm-4">
+      								<div class="form-group">
+      									<select name="uc_header1$ddlProvincia" onchange="javascript:setTimeout('__doPostBack(\'uc_header1$ddlProvincia\',\'\')', 0)" id="uc_header1_ddlProvincia" class="form-control inputselectbox">
+      										<option selected="selected" value="0">Provincia</option>
+      									</select>
+      								</div>
+      							</div>
+      							<div class="col-sm-4">
+      								<div class="form-group">
+      									<select name="uc_header1$ddlDistrito" id="uc_header1_ddlDistrito" class="form-control inputselectbox">
+      										<option value="0">Distrito</option>
+      									</select>
+      								</div>
+      							</div>
+      						</div>
+      						<!--input type="submit" value="buscar" class="submit center-block"-->
+                  <input type="image" name="uc_header1$imbBuscar" id="uc_header1_imbBuscar" class="submit center-block" src="img/buscar.jpg" onclick="return validarTab2(uc_header1_ddlDepartamento,uc_header1_ddlProvincia,uc_header1_ddlDistrito);" style="border-width:0px;">
+      					</div>
+      				</div>
+      			</div>
+      		</div>			
+      </div>
+      
+      
+      <!--<section class="buscador">-->
+      <!--<h2>Busca tu espacio</h2>
         <p>Obten promociones y descuentos</p>
         <form class="form-inline form_buscador">
           <div class="form-group">
             <input class="form-control input_buscador">
             <button class="btn btn-default">Buscar</button>  
           </div>
-        </form>
+        </form>-->
+      <!--</section>-->
     </div>
   </div>
-</section>
 </div>
+
 <!-- / Buscador  -->
 <!-- Slider  -->
 <div class="row row-centered block_slider">
