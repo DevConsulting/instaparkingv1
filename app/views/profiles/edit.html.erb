@@ -33,10 +33,23 @@
                   %> 
                   <%= error_span(@profile[:ub_department_id]) %> 
                   
-                  <%= f.input :ub_province_id, :collection => [], label: 'Provincia' %>
+                  
+                  <%= 
+                    f.association :ub_province, 
+                    label: 'Provincia',
+                    :include_blank => true,
+                    :label_method => lambda { |ub_province| "#{ub_province.nom_prov}"}
+                  %>
+                  
                   <%= error_span(@profile[:ub_province_id]) %> 
                   
-                  <%= f.input :ub_district_id, :collection => [], label: 'Distrito' %>
+                  <%= 
+                    f.association :ub_district, 
+                    label: 'Distrito',
+                    :include_blank => true,
+                    :label_method => lambda { |ub_district| "#{ub_district.nom_dist}"}
+                  %>
+                  
                   <%= error_span(@profile[:ub_district_id]) %>
                   
                 </div>

@@ -9,9 +9,17 @@ class Profile < ActiveRecord::Base
     # Un Departamento pertenece a un Perfil
     belongs_to :ub_department
     
+    # Una Provincia pertenece a un Perfil
+    belongs_to :ub_province
+    
+    # Un Distrito pertenece a un Perfil
+    belongs_to :ub_district
+    
     # Utilizando atributos de otros modelos
     accepts_nested_attributes_for :profile_phones
     accepts_nested_attributes_for :ub_department
+    accepts_nested_attributes_for :ub_province
+    accepts_nested_attributes_for :ub_district
     
     #validates :nombres, presence: { message: "El nombre es obligatorio" }
     #validates :ap_paterno, presence: { message: "El Apellido Paterno es obligatorio" }
