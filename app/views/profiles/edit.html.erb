@@ -15,7 +15,7 @@
     </div>
   </div>
 
-  <div class="panel panel-default">
+<div class="panel panel-default">
     <div class="panel-heading">Información de Ubicación</div>
     <div class="panel-body">
         <div class="container">
@@ -24,15 +24,15 @@
                   
                   <%= f.input :direccion, label: 'Dirección', required: true %>
                   <%= error_span(@profile[:direccion]) %>
-                 
-                  <%= f.input :id_dpto, :collection => [['Lima',1],['Callao',2]], label: 'Departamento' %>
-                  <%= error_span(@profile[:id_dpto]) %> 
+                   
+                  <%= f.association :ub_department %> 
+                  <%= error_span(@profile[:ub_department_id]) %> 
                   
-                  <%= f.input :id_prov, :collection => [['Lima',1],['Callao',2]], label: 'Provincia' %>
-                  <%= error_span(@profile[:id_prov]) %> 
+                  <%= f.input :ub_province_id, :collection => [], label: 'Provincia' %>
+                  <%= error_span(@profile[:ub_province_id]) %> 
                   
-                  <%= f.input :id_dist, :collection => [['San Juan de Lurigancho',1],['San Isidro',2]], label: 'Distrito' %>
-                  <%= error_span(@profile[:id_dist]) %>
+                  <%= f.input :ub_district_id, :collection => [], label: 'Distrito' %>
+                  <%= error_span(@profile[:ub_district_id]) %>
                   
                 </div>
             </div>  

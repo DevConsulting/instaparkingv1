@@ -1,6 +1,13 @@
 class Profile < ActiveRecord::Base
+    
+    # Un Perfil pertenece a un usuario
     belongs_to :user 
+    
+    # Perfil tiene de uno a muchos numeros telefónicos
     has_many :profile_phones
+    
+    # Un Departamento pertenece a un Perfil
+    belongs_to :ub_department
     
     accepts_nested_attributes_for :profile_phones
     
@@ -9,7 +16,5 @@ class Profile < ActiveRecord::Base
     #validates :ap_materno, presence: { message: "El Apellido Materno es obligatorio" }
     #validates :descripcion,  presence: { message: "Es es obligatorio ingresar un descripción" }
     #validates :direccion,  presence: { message: "Es es obligatorio indicar una dirección" }
-    
 
-    
 end

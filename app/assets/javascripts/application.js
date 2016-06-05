@@ -15,3 +15,11 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function() {
+    
+    // Aplicando Evento Change a Ubigeo
+    $('#profile_ub_department_id').on('change', function() {
+      alert( this.value ); // or $(this).val()
+    });
+});
