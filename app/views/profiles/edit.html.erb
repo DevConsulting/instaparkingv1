@@ -32,24 +32,13 @@
                     :label_method => lambda { |ub_department| "#{ub_department.nom_dpto}"}
                   %> 
                   <%= error_span(@profile[:ub_department_id]) %> 
-                  
-                  
-                  <%= 
-                    f.association :ub_province, 
-                    label: 'Provincia',
-                    :include_blank => true,
-                    :label_method => lambda { |ub_province| "#{ub_province.nom_prov}"}
-                  %>
+
+                  <%= f.input :ub_province_id, :collection => [], label: 'Provincia', :input_html => { :'data-id' => @profile[:ub_province_id] }  %>
                   
                   <%= error_span(@profile[:ub_province_id]) %> 
                   
-                  <%= 
-                    f.association :ub_district, 
-                    label: 'Distrito',
-                    :include_blank => true,
-                    :label_method => lambda { |ub_district| "#{ub_district.nom_dist}"}
-                  %>
-                  
+                  <%= f.input :ub_district_id, :collection => [], label: 'Distrito', :input_html => { :'data-id' => @profile[:ub_district_id] } %>
+ 
                   <%= error_span(@profile[:ub_district_id]) %>
                   
                 </div>

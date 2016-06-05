@@ -1,6 +1,8 @@
 class ProfilesController < ApplicationController
     #before_action :set_profile
     
+    layout "profile_edit", only: [:edit]
+    
     # GET /profiles
     def index
         @profiles = Profile.all();

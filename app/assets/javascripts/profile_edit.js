@@ -17,14 +17,7 @@
 //= require_tree .
 
 // Aplicando carga por defecto
-
-$(document).on('page:change', function() {
-    $('select[name="profile[ub_department_id]"]').trigger("change");
-});
-
-/*$(function(){ 
-//$(document).on('page:change', function() {
-
+/*$(document).on('page:load', function() {
 
     // Aplicando Evento Change a Ubigeo
     var dpto = $('select[name="profile[ub_department_id]"] option:selected').val();
@@ -33,10 +26,12 @@ $(document).on('page:change', function() {
   
     var dist = $('select[name="profile[ub_district_id]"]').data("id");
     
+    $("#profile_ub_province_id").empty();
+    $("#profile_ub_district_id").empty();
     
     // Departamentos > Provincias
     $( document ).delegate( "#profile_ub_department_id", "change", function() {
-      
+        
         dpto = $(this).val();
         
         $.ajax('/provinces/'+dpto, {
@@ -112,9 +107,10 @@ $(document).on('page:change', function() {
           
          });
     });
-    
+
     // Cargando por defecto el sistema de ubigeo
-    //$('select[name="profile[ub_department_id]"]').trigger("change");
+    $('select[name="profile[ub_department_id]"]').trigger("change");
+});*/
     
 
-});*/
+    
