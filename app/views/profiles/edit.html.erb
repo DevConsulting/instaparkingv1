@@ -25,7 +25,12 @@
                   <%= f.input :direccion, label: 'Dirección', required: true %>
                   <%= error_span(@profile[:direccion]) %>
                    
-                  <%= f.association :ub_department %> 
+                  <%= 
+                    f.association :ub_department, 
+                    label: 'Departamento', 
+                    :include_blank => true, 
+                    :label_method => lambda { |ub_department| "#{ub_department.nom_dpto}"}
+                  %> 
                   <%= error_span(@profile[:ub_department_id]) %> 
                   
                   <%= f.input :ub_province_id, :collection => [], label: 'Provincia' %>

@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-    before_action :set_profile
+    #before_action :set_profile
     
     # GET /profiles
     def index
@@ -41,15 +41,15 @@ class ProfilesController < ApplicationController
     #  params.require(:profile).permit(:nombres, :ap_paterno, :ap_materno, :descripcion, :direccion, :num_telefono)
     #end
     
-    private
+    #private
     # Use callbacks to share common setup or constraints between actions.
-    def set_profile
-      @product = Profile.find(params[:id])
-    end
+    #def set_profile
+      #@product = Profile.find(params[:id])
+    #end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:nombres, :ap_paterno, :ap_materno, :descripcion, :direccion, profile_phones_attributes: [ :id, :num_telefono ])
+      params.require(:profile).permit(:nombres, :ap_paterno, :ap_materno, :descripcion, :direccion, :ub_department_id, profile_phones_attributes: [ :id, :num_telefono ])
     end
     
 end
