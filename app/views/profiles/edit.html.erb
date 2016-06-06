@@ -22,6 +22,7 @@
             <div class="row">
                 <div class="col-md-8">
                   
+                  
                   <%= f.input :direccion, label: 'Dirección', required: true %>
                   <%= error_span(@profile[:direccion]) %>
                    
@@ -31,6 +32,9 @@
                     :include_blank => true, 
                     :label_method => lambda { |ub_department| "#{ub_department.nom_dpto}"}
                   %> 
+                  
+                  <%= f.input :ub_country_id, :as => :hidden, :input_html => { :value => 1 } %>
+                  
                   <%= error_span(@profile[:ub_department_id]) %> 
 
                   <%= f.input :ub_province_id, :collection => [], label: 'Provincia', :input_html => { :'data-id' => @profile[:ub_province_id] }  %>
