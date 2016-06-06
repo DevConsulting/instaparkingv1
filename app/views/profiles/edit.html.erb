@@ -53,14 +53,19 @@
     <div class="panel-body">
         <div class="container">
             <div class="row">
+              <div class="col-md-8">
+                <a href="#" data-id="" data-type="" data-num="" data-id-profile="<%= @profile[:id] %>" class="new">Agregar</a>  
+              </div>  
+            </div>
+            <div class="row">
                 <div class="col-md-8">
                   <table class="table table-bordered">
                     <% @profile.profile_phones.each do |p| %>
                         <tr>
                           <td class="phone_type_<%= p.id %>"><%= p.phone_type.nombre_tip_telefono %></td>
                           <td class="num_telefono_<%= p.id %>"><%= p.num_telefono %></td>
-                          <td align="center"><a href="#" data-id="<%= p.id %>" data-type="<%= p.phone_type_id %>" data-num="<%= p.num_telefono %>" class="edit">Editar</a></td><!-- <span class="glyphicon glyphicon-pencil"></span> -->
-                          <td align="center"><a href="#" data-id="<%= p.id %>" data-type="<%= p.phone_type_id %>" data-num="<%= p.num_telefono %>" class="remove">Eliminar</a></td><!-- <span class="glyphicon glyphicon-remove-circle"></span> -->
+                          <td align="center"><a href="#" data-id="<%= p.id %>" data-type="<%= p.phone_type_id %>" data-num="<%= p.num_telefono %>" data-id-profile="<%= @profile[:id] %>" class="edit">Editar</a></td><!-- <span class="glyphicon glyphicon-pencil"></span> -->
+                          <td align="center"><a href="#" data-id="<%= p.id %>" data-type="<%= p.phone_type_id %>" data-num="<%= p.num_telefono %>" data-id-profile="<%= @profile[:id] %>"class="remove">Eliminar</a></td><!-- <span class="glyphicon glyphicon-remove-circle"></span> -->
                         </tr>
                     <% end %>
                   </table>
@@ -89,7 +94,7 @@
         <h4 class="modal-title">Editar número de teléfonos</h4>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal" role="form" name="form-edit-profile-phones" id="form-edit-profile-phones">
+ 
         <div class="form-group">
           <label for="phone_type_id">Tipo</label>
           <select id="phone_type_id" name="phone_type_id" class="form-control">
@@ -103,7 +108,7 @@
           <label for="num_telefono">Número</label>
           <input type="text" class="form-control" id="num_telefono" name="num_telefono" placeholder="Número">
         </div> 
-        </form>
+
       </div>
       
       <div class="modal-footer">

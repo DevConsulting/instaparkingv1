@@ -29,6 +29,9 @@ Rails.application.routes.draw do
   # Ubigeo - Provincias
   resources :ub_provinces
   
+  # Teléfonos
+  resources :profile_phones
+  
   # Ubigeo - Lista de Departamentos
   get "/deparments/:country/" => "ub_departments#show"
   
