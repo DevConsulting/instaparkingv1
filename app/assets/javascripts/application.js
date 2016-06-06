@@ -15,21 +15,3 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
-
-// SIstema de Ubigeo
-
-
-var dpto = ''; prov = ''; dist = '';
-
-$(document).on('page:change', function() {
-    
-    dpto = $('#profile_ub_department_id option:selected').val();
-    
-    prov = $('select[name="profile[ub_province_id]"]').data("id");
-  
-    dist = $('select[name="profile[ub_district_id]"]').data("id");
-    
-    // Por defecto aplicando un Change
-    $('select[name="profile[ub_department_id]"]').trigger("change");
-    
-});
