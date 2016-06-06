@@ -5,6 +5,9 @@ class Profile < ActiveRecord::Base
     
     # Perfil tiene de uno a muchos numeros telefónicos
     has_many :profile_phones
+
+    # Un País pertenece a un Perfil
+    belongs_to :ub_country
     
     # Un Departamento pertenece a un Perfil
     belongs_to :ub_department

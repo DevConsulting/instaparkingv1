@@ -20,7 +20,6 @@ $( document ).delegate "#profile_ub_department_id", "change", ->
                 text : '-- Seleccione Provincia --'
             }))
         success: (data, textStatus, jqXHR) ->
-            #console.log(data)
             $("#profile_ub_province_id").removeAttr("disabled")
             for item in data
                 
@@ -52,7 +51,6 @@ $( document ).delegate "#profile_ub_province_id", "change", ->
                 text : '-- Seleccione Distrito --'
             }))
         success: (data, textStatus, jqXHR) ->
-            console.log(data)
             $("#profile_ub_district_id").removeAttr("disabled")
             for item in data
                 
@@ -64,4 +62,43 @@ $( document ).delegate "#profile_ub_province_id", "change", ->
                 # La provincia anterior es igual al valor de la nueva lista
                 if dist == item.id 
                     $('#profile_ub_district_id option[value='+dist+']').attr('selected','selected') #// Seleccionando valor por defecto
-                    $('select[name="profile[ub_district_id]"]').trigger("change")                   #// Cargando nuevamente el el selector 
+                    $('select[name="profile[ub_district_id]"]').trigger("change")                   #// Cargando nuevamente el el selector
+
+
+
+phone_id = '';
+
+$(document).delegate ".edit", "click", (event) ->
+    event.preventDefault()
+    
+    # Variable
+    phone_id = $(this).data("id")
+    
+    # Set Inputs
+    $("#num_telefono").val($(this).attr("data-num"))
+    $('#phone_type_id option[value='+$(this).attr("data-type")+']').attr('selected','selected')
+    
+    # Modal
+    $('#myModal').modal 'show'
+    
+$(document).delegate ".remove", "click", (event) ->
+    event.preventDefault()
+    
+    # Variable
+    phone_id = $(this).data("id")
+    
+    # Modal
+    $('#myModal').modal 'show'
+
+$(document).delegate ".save", "click", (event) ->
+    
+    # Set Html
+    $(".phone_type_"+phone_id).html($("#phone_type_id option:selected").text())
+    $(".num_telefono_"+phone_id).html($("#num_telefono").val())
+    
+    # Set Data
+    $("a[data-id='" + phone_id + "']").attr("data-type", $("#phone_type_id option:selected").val())
+    $("a[data-id='" + phone_id + "']").attr("data-num", $("#num_telefono").val())
+
+    # Modal
+    $('#myModal').modal 'hide'

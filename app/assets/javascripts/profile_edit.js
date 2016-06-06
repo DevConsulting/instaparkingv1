@@ -21,6 +21,7 @@
 
 var dpto = ''; prov = ''; dist = '';
 
+
 $(document).on('page:change', function() {
     
     dpto = $('#profile_ub_department_id option:selected').val();
@@ -32,4 +33,5 @@ $(document).on('page:change', function() {
     // Por defecto aplicando un Change
     $('select[name="profile[ub_department_id]"]').trigger("change");
     
+   
 });
