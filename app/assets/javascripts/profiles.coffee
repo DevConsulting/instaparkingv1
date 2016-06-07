@@ -65,10 +65,9 @@ $( document ).delegate "#profile_ub_province_id", "change", ->
                     $('select[name="profile[ub_district_id]"]').trigger("change")                   #// Cargando nuevamente el el selector
 
 
-
 phone_id = ''; profile_id = '';
 
-# Crud Telefono - Edit
+# Crud Teléfono - Edit
 $(document).delegate ".edit", "click", (event) ->
     
     event.preventDefault()
@@ -84,7 +83,7 @@ $(document).delegate ".edit", "click", (event) ->
     # Modal
     $('#myModal').modal 'show'
 
-# Crud Telefono - Delete    
+# Crud Teléfono - Delete    
 $(document).delegate ".remove", "click", (event) ->
     
     event.preventDefault()
@@ -109,9 +108,7 @@ $(document).delegate ".remove", "click", (event) ->
     # Modal
     #$('#myModal').modal 'hide'
     
-    
-
-# Crud Telefono - New
+# Crud Teléfono - New
 $(document).delegate ".new", "click", (event) ->
     
     event.preventDefault()
@@ -126,7 +123,7 @@ $(document).delegate ".new", "click", (event) ->
     # Modal
     $('#myModal').modal 'show'
 
-# Crud Telefono - Save
+# Crud Teléfono - Save
 $(document).delegate ".save", "click", (event) ->
     
     if phone_id != ''
