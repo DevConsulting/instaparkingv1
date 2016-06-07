@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Instaparkingv1" %></title>
+    <%= csrf_meta_tags %>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script>
+    <![endif]-->
+
+    <%= stylesheet_link_tag "application", :media => "all" %>
+
+    <!-- For third-generation iPad with high-resolution Retina display: -->
+    <!-- Size should be 144 x 144 pixels -->
+    <%= favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144' %>
+
+    <!-- For iPhone with high-resolution Retina display: -->
+    <!-- Size should be 114 x 114 pixels -->
+    <%= favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114' %>
+
+    <!-- For first- and second-generation iPad: -->
+    <!-- Size should be 72 x 72 pixels -->
+    <%= favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72' %>
+
+    <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+    <!-- Size should be 57 x 57 pixels -->
+    <%= favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
+
+    <!-- For all other devices -->
+    <!-- Size should be 32 x 32 pixels -->
+    <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
+
+    <%= javascript_include_tag "application" %>
+    
+    <style>
+      #map {
+        
+        height: 300px;
+      }
+    </style>
+    
+    <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9P73aj_uKJWCsTwxS-lq1SiE15ciWHDk&signed_in=true"></script>-->
+    
+    <script type="text/javascript">
+
+      // This example displays a marker at the center of Australia.
+      // When the user clicks the marker, an info window opens.
+      
+      function initMap() {
+        var uluru = {lat: -12.0467045, lng: -77.042688};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: uluru
+        });
+      
+        var contentString = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
+            '<div id="bodyContent">'+
+            '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+            'sandstone rock formation in the southern part of the '+
+            'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
+            'south west of the nearest large town, Alice Springs; 450&#160;km '+
+            '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
+            'features of the Uluru - Kata Tjuta National Park. Uluru is '+
+            'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
+            'Aboriginal people of the area. It has many springs, waterholes, '+
+            'rock caves and ancient paintings. Uluru is listed as a World '+
+            'Heritage Site.</p>'+
+            '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+            'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+            '(last visited June 22, 2009).</p>'+
+            '</div>'+
+            '</div>';
+      
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+      
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map,
+          title: 'Uluru (Ayers Rock)'
+        });
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+      }
+
+      /*google.maps.event.addListener(marker, "dragend", function (event) {
+          console.log(event.latLng.lat());
+          console.log(event.latLng.lng());
+      });*/
+                                    
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9P73aj_uKJWCsTwxS-lq1SiE15ciWHDk&signed_in=true&callback=initMap"></script>
+  </head>
+  <body>
+
+
+    <div class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">InstaParking</a>
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+          <ul class="nav navbar-nav">
+            <%= render 'partials/menu' %>  
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <%= render 'partials/menu_right' %>  
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9">
+          <!--<% if notice %>
+            <p class="notice"><%= notice %></p>
+          <% end %>-->
+          
+          <% if alert %>
+            <p class="alert"><%= alert %></p>
+          <% end %>
+          
+          <%= bootstrap_flash %>
+          <%= yield %>
+        </div>
+        <div class="col-lg-3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Menu Principal</li>
+              <li><%= link_to "Crear reservas", "/path1"  %></li>
+              <li><%= link_to "Crear Ofertas", "/path2"  %></li>
+              <li><%= link_to "Mis Favoritos", "/path3"  %></li>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <footer>
+        <p>&copy; Company 2016</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+  </body>
+</html>

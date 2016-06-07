@@ -32,6 +32,9 @@ Rails.application.routes.draw do
   # Teléfonos
   resources :profile_phones
   
+  # Espacios
+  resources :spaces
+  
   # Ubigeo - Lista de Departamentos
   get "/deparments/:country/" => "ub_departments#show"
   

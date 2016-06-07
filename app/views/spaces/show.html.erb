@@ -1,0 +1,170 @@
+<% @spaces.inspect %>
+<form>
+  <div class="panel panel-default">
+    <div class="panel-heading">Paso 1: Ubicación del Espacio</div>  
+    <div class="panel-body">
+      
+                  
+      <div class="row">
+          <div class="col-md-12">
+              <label>Dirección:</label>
+              <div>Av. Jorge Basadre 1066</div>
+          </div>
+      </div>
+    
+      <div class="row">
+          <div class="col-md-12">
+              <label>Departamento:</label>
+              <div>Lima</div>
+          </div>
+      </div>
+      
+      <div class="row">
+          <div class="col-md-12">
+              <label>Provincia:</label>
+              <div>Lima</div>
+          </div>
+      </div>
+      
+      <div class="row">
+          <div class="col-md-12">
+              <label>Distrito:</label>
+              <div>Lima</div>
+          </div>
+      </div>
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+
+                  <p>¿Dónde está su plaza de aparcamiento?</p>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Dirección</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Ejemplo: Av. Jorge Basadre 1066, San Isidro">
+                    <p class="text-info">Su dirección completa sólo se mostrará a los conductores que reserven su espacio.</p>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Departamento</label>
+                    <select class="form-control"><option> -- Departamento -- </option></select>
+                    
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Provincia</label>
+                    <select class="form-control"><option> -- Provincia -- </option></select>
+                    
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Distrito</label>
+                    <select class="form-control"><option> -- Distrito -- </option></select>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label for="exampleInputPassword1">Mapa (Referencial)</label>
+                      <input type="hidden" name="lat" id="lat" value="-12.0467045" />
+                      <input type="hidden" name="lng" id="lng" value="-77.042688" />
+                      <div id="map" class="col-md-12"></div>
+                   </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="panel panel-default">
+    <div class="panel-heading">Paso 2: Características</div>  
+    <div class="panel-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+
+    
+                  <p>¿Dónde está su plaza de aparcamiento?</p>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Tipo de espacio</label>
+                    
+                    
+                    <select class="form-control"><option> -- Tipo de espacio -- </option></select>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Número de Espacio</label>
+                    <input type="text" class="form-control" name="optionsRadios" id="optionsRadios1" value="1">
+                  </div>
+                  
+                  
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Persona</label>
+                    <div class="radio">
+                      <label>
+                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                        Natural
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label>
+                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                        Jurídica
+                      </label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Caractéristicas</label>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" value="">
+                        Video Vigilancia
+                      </label>
+                    </div>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" value="">
+                        Wi-fi
+                      </label>
+                    </div>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" value="">
+                        Cargador
+                      </label>
+                    </div>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" value="">
+                        Limpieza
+                      </label>
+                    </div>
+                  </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="panel panel-default">
+    <div class="panel-heading">Paso 3: Descripción</div>  
+    <div class="panel-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Descripción</label>
+                    <textarea class="form-control" rows="3" placeholder="Ingrese la descripción"></textarea>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Recomendaciones</label>
+                    <textarea class="form-control" rows="3" placeholder="Recomendaciones"></textarea>
+                  </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  </form>
