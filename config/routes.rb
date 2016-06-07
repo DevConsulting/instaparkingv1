@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   
   get 'pages/pruebas'
   
+  get 'pages/gracias'
+  
   
   # Aplicando Rercursos
   resources :profiles
