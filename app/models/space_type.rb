@@ -1,6 +1,6 @@
 class SpaceType < ActiveRecord::Base
     
-    # Un tipo de espacio tiene muchas caracteristicas
-    has_many :space_characteristics
+    # Un Tipo de Espacio tiene muchos Espacios
+    has_many :spaces
     
 end
