@@ -8,7 +8,7 @@ class ContactosController < ApplicationController
          #@contact.save
           #redirect_to({ action: 'index' }, notice: "Something serious happened")
                 if @contacto.save
-                  redirect_to '/pages/gracias', notice: 'El perfil fue actualizado satisfactoriamente'
+                  redirect_to '/pages/gracias', notice: 'Tu mensaje fue recibido'
                 else
                   render :new
                 end
