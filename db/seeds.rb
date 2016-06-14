@@ -35,3 +35,26 @@ UbDistrict.create([
     {ub_department_id: 1, ub_province_id: 1, nom_dist: "San Miguel"},
     {ub_department_id: 1, ub_province_id: 1, nom_dist: "Surco"}
 ]);
+
+# Creando el Tipo de Espacio
+SpaceType.create([
+    {nom_space_type: "Camino de Entrada"},
+    {nom_space_type: "Garaje"},
+    {nom_space_type: "Parking"}
+]);
+
+# Creando el Tipo de Servicios
+Service.create([
+    {nom_service: "De Carga Eléctrica"},
+    {nom_service: "Cámara de Vigilancia"},
+    {nom_service: "Cubierto"},
+    {nom_service: "Personal de Seguridad"},
+    {nom_service: "Entrada Múltiple / Salida"},
+    {nom_service: "Acceso Restringido"},
+]);
+
+# Creando Tipo de Persona
+TypeOfferPerson.create([
+    {nom_type_offer: "Natural"},
+    {nom_type_offer: "Jurídica"}
+]);

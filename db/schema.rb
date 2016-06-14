@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160614031342) do
+ActiveRecord::Schema.define(version: 20160614061804) do
 
   create_table "phone_types", force: :cascade do |t|
     t.string   "nombre_tip_telefono", limit: 255
@@ -59,9 +59,14 @@ ActiveRecord::Schema.define(version: 20160614031342) do
   end
 
   create_table "space_characteristics", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "service_id", limit: 4
+    t.integer  "space_id",   limit: 4
   end
+
+  add_index "space_characteristics", ["service_id"], name: "index_space_characteristics_on_service_id", using: :btree
+  add_index "space_characteristics", ["space_id"], name: "index_space_characteristics_on_space_id", using: :btree
 
   create_table "space_types", force: :cascade do |t|
     t.string   "nom_space_type", limit: 255
@@ -70,13 +75,23 @@ ActiveRecord::Schema.define(version: 20160614031342) do
   end
 
   create_table "space_ubications", force: :cascade do |t|
-    t.string   "direccion",  limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "space_id",   limit: 4
+    t.string   "direccion",        limit: 255
+    t.string   "lat",              limit: 255
+    t.string   "long",             limit: 255
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "space_id",         limit: 4
+    t.integer  "ub_country_id",    limit: 4
+    t.integer  "ub_department_id", limit: 4
+    t.integer  "ub_province_id",   limit: 4
+    t.integer  "ub_district_id",   limit: 4
   end
 
   add_index "space_ubications", ["space_id"], name: "index_space_ubications_on_space_id", using: :btree
+  add_index "space_ubications", ["ub_country_id"], name: "index_space_ubications_on_ub_country_id", using: :btree
+  add_index "space_ubications", ["ub_department_id"], name: "index_space_ubications_on_ub_department_id", using: :btree
+  add_index "space_ubications", ["ub_district_id"], name: "index_space_ubications_on_ub_district_id", using: :btree
+  add_index "space_ubications", ["ub_province_id"], name: "index_space_ubications_on_ub_province_id", using: :btree
 
   create_table "spaces", force: :cascade do |t|
     t.string   "nom_space",            limit: 255
@@ -86,10 +101,8 @@ ActiveRecord::Schema.define(version: 20160614031342) do
     t.datetime "updated_at",                       null: false
     t.integer  "type_offer_person_id", limit: 4
     t.integer  "space_type_id",        limit: 4
-    t.integer  "service_id",           limit: 4
   end
 
-  add_index "spaces", ["service_id"], name: "index_spaces_on_service_id", using: :btree
   add_index "spaces", ["space_type_id"], name: "index_spaces_on_space_type_id", using: :btree
   add_index "spaces", ["type_offer_person_id"], name: "index_spaces_on_type_offer_person_id", using: :btree
 
@@ -161,8 +174,13 @@ ActiveRecord::Schema.define(version: 20160614031342) do
   add_foreign_key "profiles", "ub_districts"
   add_foreign_key "profiles", "ub_provinces"
   add_foreign_key "profiles", "users"
+  add_foreign_key "space_characteristics", "services"
+  add_foreign_key "space_characteristics", "spaces"
   add_foreign_key "space_ubications", "spaces"
-  add_foreign_key "spaces", "services"
+  add_foreign_key "space_ubications", "ub_countries"
+  add_foreign_key "space_ubications", "ub_departments"
+  add_foreign_key "space_ubications", "ub_districts"
+  add_foreign_key "space_ubications", "ub_provinces"
   add_foreign_key "spaces", "space_types"
   add_foreign_key "spaces", "type_offer_people"
   add_foreign_key "ub_departments", "ub_countries"
