@@ -2,7 +2,7 @@ class AddSpaceTypeRefSpace < ActiveRecord::Migration
   def change
     
     # Referencia Tabla Space
-    add_reference :space_types, :space, index: true, foreign_key: true
+    add_reference :spaces, :space_type, index: true, foreign_key: true
     
   end
 end
