@@ -10,4 +10,13 @@ class SpacesController < ApplicationController
         @spaces = ''
     end
     
+    def create
+        @space = Space.new(space_params);
+    end
+    
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def space_params
+      params.require(:space).permit(:name, :description, :category_id)
+    end
+    
 end
