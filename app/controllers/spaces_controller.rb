@@ -8,6 +8,10 @@ class SpacesController < ApplicationController
         @space.build_space_ubication
     end
     
+    def index
+        @spaces = Space.all
+    end
+    
     # GET /spaces/1
     def show
         @space = Space.find(params[:id])

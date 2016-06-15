@@ -9,7 +9,7 @@
         <ul class="dropdown-menu">
           <!-- Aplicando Link para Mostrar perfil  -->        
           <li><%= link_to "Editar Perfil", controller: "profiles", action: "edit", id: current_user.profile.id %></li>
-          <li><a href="#">Cambiar Contrasena</a></li>
+          <li><%= link_to "Cambiar Contrasena", edit_user_password_path %></li>
           <li><%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete  %></li>
         </ul>
     </li>

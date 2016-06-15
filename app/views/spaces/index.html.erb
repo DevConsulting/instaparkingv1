@@ -1,0 +1,21 @@
+<h1>Espacios Disponibles</h1>
+
+<table class="table table-bordered">
+    <tr>
+        <td><b>Nombre del Espacio</b></td>
+        <td><b>Dirección</b></td>
+        <td><b>Descripción</b></td>
+        <td></td>
+    </tr>
+    <% @spaces.each do |p| %>
+        <tr>
+            <td><%= p.nom_space %></td>
+            <td><%= p.space_ubication.direccion %></td>
+            <td><%= p.descripcion %></td>
+            <td><a class="btn btn-default" href="/spaces/<%= p.id %>" role="button">Ver más</a></td>
+        </tr>
+    <% end %>
+</table>
+
+<a class="btn btn-default" href="/" role="button">Retornar</a>
+

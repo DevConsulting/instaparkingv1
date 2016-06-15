@@ -59,10 +59,22 @@
     </div>
 
     <div class="container">
-      <div class="row">
-        <%= render 'partials/menu_user' %>  
-      </div><!--/row-->
+     <div class="row">
+        <div class="col-lg-12">
+          <!--<% if notice %>
+            <p class="notice"><%= notice %></p>
+          <% end %>-->
+          
+          <% if alert %>
+            <p class="alert"><%= alert %></p>
+          <% end %>
+          
+          <%= bootstrap_flash %>
+          <%= yield %>
+        </div>
 
+
+      </div><!--/row-->
       <footer>
         <p>&copy; Company 2016</p>
       </footer>
