@@ -60,28 +60,7 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-lg-9">
-          <!--<% if notice %>
-            <p class="notice"><%= notice %></p>
-          <% end %>-->
-          
-          <% if alert %>
-            <p class="alert"><%= alert %></p>
-          <% end %>
-          
-          <%= bootstrap_flash %>
-          <%= yield %>
-        </div>
-        <div class="col-lg-3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Menu Principal</li>
-              <li><%= link_to "Crear reservas", "/path1"  %></li>
-              <li><%= link_to "Crear Ofertas", "/path2"  %></li>
-              <li><%= link_to "Mis Favoritos", "/path3"  %></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
+        <%= render 'partials/menu_user' %>  
       </div><!--/row-->
 
       <footer>

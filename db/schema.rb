@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160614061804) do
+ActiveRecord::Schema.define(version: 20160615181200) do
 
   create_table "phone_types", force: :cascade do |t|
     t.string   "nombre_tip_telefono", limit: 255
@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 20160614061804) do
     t.datetime "updated_at",                       null: false
     t.integer  "type_offer_person_id", limit: 4
     t.integer  "space_type_id",        limit: 4
+    t.integer  "created_by",           limit: 4
   end
 
   add_index "spaces", ["space_type_id"], name: "index_spaces_on_space_type_id", using: :btree

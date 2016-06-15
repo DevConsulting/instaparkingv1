@@ -1,7 +1,10 @@
 class Space < ActiveRecord::Base
     
+    # Un Espacio pertenece a un usuario
+    belongs_to :user
+    
      # Un espacio tiene un tipo de ofertante
-    belongs_to :type_offer_people
+    belongs_to :type_offer_person
     
     # Un espacio tiene un tipo de espacio
     belongs_to :space_type

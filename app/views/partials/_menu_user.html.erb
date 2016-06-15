@@ -1,0 +1,13 @@
+<% if user_signed_in? %>  
+  <div class="col-lg-3">
+    <div class="well sidebar-nav">
+      <ul class="nav nav-list">
+        <li class="nav-header">Menu Principal</li>
+        <li><%= link_to "Crear Espacios", new_space_path %></li>
+        <li><%= link_to 'Mis Espacios', controller: "spaces", action: "list", id: current_user.id %></li>
+        <li><%= link_to "Realizar una Reserva", "/path2"  %></li>
+        <li><%= link_to "Mis Favoritos", "/path3"  %></li>
+      </ul>
+    </div><!--/.well -->
+  </div><!--/span-->
+<% end %>

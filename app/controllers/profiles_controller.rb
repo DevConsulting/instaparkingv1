@@ -1,7 +1,7 @@
 class ProfilesController < ApplicationController
     #before_action :set_profile
     
-    layout "profile_edit", only: [:edit]
+    layout "profile_edit", only: [:edit, :show]
     
     # GET /profiles
     def index

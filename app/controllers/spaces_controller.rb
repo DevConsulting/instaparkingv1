@@ -1,21 +1,20 @@
 class SpacesController < ApplicationController
     
-    layout "spaces_layout", only: [:new, :show, :edit]
+    layout "spaces_layout", only: [:new, :show, :edit, :list]
     
     # POST /spaces/
     def new
         @space = Space.new
         @space.build_space_ubication
-        if @space.save
-            redirect_to @space, notice: 'El Espacio fue creado satisfactoriamente'
-        else
-            render :action => "show", :id => @space.id
-        end
     end
     
     # GET /spaces/1
     def show
         @space = Space.find(params[:id])
+    end
+    
+    def list
+        @spaces = Space.where(created_by: params[:id])
     end
     
     # GET /spaces/1
@@ -26,16 +25,21 @@ class SpacesController < ApplicationController
     # POST /spaces/1
     def create
         @space = Space.new(space_params);
+        if @space.save
+            redirect_to @space, notice: 'El Espacio fue creado satisfactoriamente'
+        else
+            render :action => "show", :id => @space.id
+        end
     end
     
-    # PUT o PATCH /profiles/1
+    # PUT o PATCH /spaces/1
     def update
         
         @space = Space.find(params[:id])
         @space.update(space_params)
         
         if @space.save
-            redirect_to @space, notice: 'El perfil fue actualizado satisfactoriamente'
+            redirect_to @space, notice: 'El Espacio fue actualizado satisfactoriamente'
         else
             render :edit
         end
@@ -51,6 +55,7 @@ class SpacesController < ApplicationController
             :num_espacio, 
             :type_offer_person_id, 
             :space_type_id, 
+            :created_by,
             space_ubication_attributes: [ 
                                         :id, 
                                         :direccion,

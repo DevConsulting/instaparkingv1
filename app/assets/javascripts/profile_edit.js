@@ -24,6 +24,8 @@ var dpto = ''; prov = ''; dist = '';
 
 $(document).on('page:change', function() {
     
+    $('#profile_ub_department_id option[value=1]').attr('selected','selected');
+    
     dpto = $('#profile_ub_department_id option:selected').val();
     
     prov = $('select[name="profile[ub_province_id]"]').data("id");

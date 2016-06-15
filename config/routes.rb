@@ -11,11 +11,10 @@ Rails.application.routes.draw do
   get 'pages/tos'
 
   get 'pages/contact_us'
+
+  get 'spaces/list/:id/' => "spaces#list"
   
-  get 'pages/pruebas'
-  
-  
-  # Aplicando Recursos 
+    # Aplicando Recursos 
   
   # Perfiles
   resources :profiles
@@ -42,6 +41,8 @@ Rails.application.routes.draw do
   get "/provinces/:department/" => "ub_provinces#showProvinces"
   
   # Ubigeo - LIsta de Distritos
+  get "/districts/:department/:province/" => "ub_districts#showDistricts"
+  
   get "/districts/:department/:province/" => "ub_districts#showDistricts"
   
   # The priority is based upon order of creation: first created -> highest priority.

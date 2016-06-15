@@ -1,0 +1,16 @@
+<h1>Mis Espacios</h1>
+
+<table class="table table-bordered">
+    <tr>
+        <td><b>Nombre del Espacio</b></td>
+        <td></td>
+    </tr>
+    <% @spaces.each do |p| %>
+        <tr>
+            <td><%= p.nom_space %></td>
+            <td><a class="btn btn-default" href="/spaces/<%= p.id %>/edit" role="button">Editar</a></td>
+        </tr>
+    <% end %>
+</table>
+
+<a class="btn btn-default" href="/profiles/<%= current_user.profile.id %>" role="button">Retornar</a>
