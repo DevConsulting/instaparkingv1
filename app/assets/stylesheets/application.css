@@ -15,12 +15,11 @@
  */
 body {
   /* Margin bottom by footer height */
-  margin-top: 8%;
-  margin:0px;
-  padding: 0px;
-  height:auto;
-  background-color: #F1EFEF;
-  font-family: 'DobraBook','Helvetica Neue',Helvetica,Arial,sans-serif;
+      margin-top: 50px;
+      padding: 0px;
+      height:auto;
+      background-color: #F1EFEF;
+      font-family: 'DobraBook','Helvetica Neue',Helvetica,Arial,sans-serif;
 }
 
 #bg {
