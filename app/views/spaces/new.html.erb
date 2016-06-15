@@ -1,3 +1,8 @@
+<style>
+  .collection_radio_buttons, .collection_check_boxes{
+    padding-left: 0px !important;
+  }
+</style>
 <%= simple_form_for @space, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="panel panel-default">
     <div class="panel-heading">Paso 1: Ubicación del Espacio</div>  
@@ -58,53 +63,21 @@
                     <%= f.collection_select(:space_type_id, SpaceType.all, :id, :nom_space_type, {include_blank: "Seleccione el Tipo de Espacio"},  {class: "form-control"}) %>
                   </div>
                   
-                  
                   <%= f.input :num_espacio, label: 'Número de Espacio:', required: false, class: "form-control", placeholder: "Ingrese número de espacios" %>
                   
+                  <div class="form-group">
+                      <label for="space_type_id">Persona</label>
+                      <%= f.collection_radio_buttons(:space_type_id, TypeOfferPerson.all, :id, :nom_type_offer, {:item_wrapper_class => 'radio'}, {:class => "label_option" }) %>
+                  </div>
                   
                   <div class="form-group">
-                    <label for="exampleInputPassword1">Persona</label>
-                    <div class="radio">
-                      <label>
-                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                        Natural
-                      </label>
-                    </div>
-                    <div class="radio">
-                      <label>
-                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                        Jurídica
-                      </label>
-                    </div>
+                    <label for="service_ids">Caractéristicas</label>
+                    
+                    <%= f.fields_for :space_characteristic do |ff| %>
+                      <%= ff.collection_check_boxes(:service_ids, Service.all, :id, :nom_service , {:item_wrapper_class => 'checkbox', :class => "label_option"}, { :multiple => true }) %>
+                    <% end %>
+                    
                   </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Caractéristicas</label>
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox" value="">
-                        Video Vigilancia
-                      </label>
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox" value="">
-                        Wi-fi
-                      </label>
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox" value="">
-                        Cargador
-                      </label>
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox" value="">
-                        Limpieza
-                      </label>
-                    </div>
-                  </div>
-
 
           </div>
         </div>
@@ -118,12 +91,10 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8">
-            
               <div class="form-group">
                 <label for="descripcion">Descripción</label>
                 <%= f.text_area :descripcion, label: 'Descripción:', required: false, class: "form-control", placeholder: "Ingrese la descripción", row: "3" %>
               </div>
-              
               <div class="form-group">
                 <label for="observacion">Recomendaciones</label>
                 <%= f.text_area :observacion, label: 'Recomendaciones:', required: false, class: "form-control", placeholder: "Ingrese las recomendaciones", row: "3" %>
@@ -134,4 +105,9 @@
     </div>
   </div>
   
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary save">Guardar</button>
+      </div>
+      
 <% end %>

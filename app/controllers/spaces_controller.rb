@@ -3,8 +3,10 @@ class SpacesController < ApplicationController
     layout "spaces_layout", only: [:new, :show]
     
     def new
+        
         @space = Space.new
         @space.build_space_ubication
+        
     end
     
     def show
@@ -13,7 +15,6 @@ class SpacesController < ApplicationController
     
     def create
         @space = Space.new(space_params);
-        @space.inspect;
     end
     
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -34,7 +35,12 @@ class SpacesController < ApplicationController
                                         :ub_department_id,
                                         :ub_province_id,
                                         :ub_district_id
-                                        ]
+                                        ],
+            space_characteristics_attributes: [
+                                        :id,
+                                        :nom_service
+            ],
+            :service_ids => []
             
           )
     end
