@@ -1,0 +1,110 @@
+<style>
+  .collection_radio_buttons, .collection_check_boxes{
+    padding-left: 0px !important;
+  }
+</style>
+<%= simple_form_for @reservation, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="panel panel-default">
+    <div class="panel-heading">Paso 1: Información de la Reserva</div>  
+    <div class="panel-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+              <p>Espacio Seleccionado: Espacio 1</p>
+              
+              <%= f.input :space_id, :as => :hidden, :input_html => { :value => '' } %>
+              <%= f.input :user_id, :as => :hidden, :input_html => { :value => '' } %>
+              
+              <%= f.input :f_inicio, label: 'Fecha de inicio:', required: false, class: "form-control", placeholder: "Ingrese la fecha de inicio" %>
+              
+              <%= f.input :f_fin, label: 'Fecha de finalización:', required: false, class: "form-control", placeholder: "Ingrese la fecha de finalización" %>
+              
+              <%= f.input :h_inicio, label: 'Hora de inicio:', required: false, class: "form-control", placeholder: "Ingrese la hora de inicio" %>
+              
+              <%= f.input :h_fin, label: 'Hora de finalizacion:', required: false, class: "form-control", placeholder: "Ingrese la hora de finalización" %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="panel panel-default">
+    <div class="panel-heading">Paso 2: Información del Auto</div>  
+    <div class="panel-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            
+              <div class="form-group">
+                <label for="observacion">Tipo de Vehículo</label>
+                <input type="text" id="" name="" value="" class="form-control">
+              </div>
+              
+              <div class="form-group">
+                <label for="observacion">Marca</label>
+                <select class="form-control"><option>Marca</option></select>
+              </div>  
+
+              <div class="form-group">
+                <label for="observacion">Placa</label>
+                <input type="text" id="" name="" value="" class="form-control">
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
+  <div class="modal-footer">
+      <a href="/reservations/thank_you_page" class="btn btn-primary save">Guardar</a>
+  </div>
+      
+<% end %>
+
+    <script type="text/javascript">
+
+      // This example displays a marker at the center of Australia.
+      // When the user clicks the marker, an info window opens.
+      
+      function initMap() {
+        var uluru = {lat: -12.0467045, lng: -77.042688};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: uluru
+        });
+      
+        var contentString = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading"></h1>'+
+            '<div id="bodyContent">'+
+            '<p></p>'+
+            '</div>'+
+            '</div>';
+      
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+      
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map,
+          title: 'Uluru (Ayers Rock)'
+        });
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+      }
+
+      /*google.maps.event.addListener(marker, "dragend", function (event) {
+          console.log(event.latLng.lat());
+          console.log(event.latLng.lng());
+      });*/
+                                    
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9P73aj_uKJWCsTwxS-lq1SiE15ciWHDk&signed_in=true&callback=initMap"></script>

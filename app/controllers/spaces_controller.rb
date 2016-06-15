@@ -1,8 +1,8 @@
 class SpacesController < ApplicationController
     
-    layout "spaces_layout", only: [:new, :show, :edit, :list]
+    layout "spaces_layout", only: [:new, :show, :edit, :list, :index]
     
-    # POST /spaces/
+    # GET /spaces/
     def new
         @space = Space.new
         @space.build_space_ubication

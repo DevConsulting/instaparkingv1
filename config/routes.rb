@@ -14,6 +14,9 @@ Rails.application.routes.draw do
 
   get 'spaces/list/:id/' => "spaces#list"
   
+  get 'reservations/thank_you_page'
+  
+  
     # Aplicando Recursos 
   
   # Perfiles
@@ -33,6 +36,9 @@ Rails.application.routes.draw do
   
   # Espacios
   resources :spaces
+  
+  # Reservas
+  resources :reservations
   
   # Ubigeo - Lista de Departamentos
   get "/deparments/:country/" => "ub_departments#show"
