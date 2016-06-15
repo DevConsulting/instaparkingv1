@@ -1,46 +1,43 @@
-<% @spaces.inspect %>
-<form>
+<%= simple_form_for @space, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="panel panel-default">
     <div class="panel-heading">Paso 1: Ubicación del Espacio</div>  
     <div class="panel-body">
       <div class="container">
         <div class="row">
           <div class="col-md-8">
-
-                  <p>¿Dónde está su plaza de aparcamiento?</p>
-                  
-                  <div class="form-group">
-                    <label for="nom_space">Nombre del espacio:</label>
-                    <input type="text" class="form-control" id="nom_space" placeholder="Nombre del espacio">
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Dirección</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Ejemplo: Av. Jorge Basadre 1066, San Isidro">
-                    <p class="text-info">Su dirección completa sólo se mostrará a los conductores que reserven su espacio.</p>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Departamento</label>
-                    <select class="form-control"><option> -- Departamento -- </option></select>
-                    
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Provincia</label>
-                    <select class="form-control"><option> -- Provincia -- </option></select>
-                    
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Distrito</label>
-                    <select class="form-control"><option> -- Distrito -- </option></select>
-                  </div>
-                  
-                  <div class="form-group">
-                      <label for="exampleInputPassword1">Mapa (Referencial)</label>
-                      <input type="hidden" name="lat" id="lat" value="-12.0467045" />
-                      <input type="hidden" name="lng" id="lng" value="-77.042688" />
-                      <div id="map" class="col-md-12"></div>
-                   </div>
+              <p>¿Dónde está su plaza de aparcamiento?</p>
+              
+              <%= f.input :nom_space, label: 'Nombre del espacio:', required: false, class: "form-control", placeholder: "Ingrese el nombre del espacio" %>
+              
+              <%= f.fields_for :space_ubication do |ff| %>
+                <div class="form-group">
+                  <label for="direccion">Dirección</label>
+                  <%= ff.text_field :direccion, class: "form-control", placeholder: "Ingrese la dirección" %>
+                </div>
+                
+                <div class="form-group">
+                  <label for="ub_department_id">Departamento</label>
+                  <%= ff.collection_select(:ub_department_id, UbDepartment.all, :id, :nom_dpto, {include_blank: "Seleccione el Departamento"},  {class: "form-control"}) %>
+                </div>
+                
+                <div class="form-group">
+                  <label for="ub_country_id">Provincia</label>
+                  <%= ff.collection_select(:ub_province_id, UbProvince.all, :id, :nom_prov, {include_blank: "Seleccione la Provincia"},  {class: "form-control"}) %>
+                </div>
+                
+                <div class="form-group">
+                  <label for="ub_district_id">Distrito</label>
+                  <%= ff.collection_select(:ub_district_id, UbDistrict.all, :id, :nom_dist, {include_blank: "Seleccione el Distrito"},  {class: "form-control"}) %>
+                </div>
+                
+                <div class="form-group">
+                  <label for="">Mapa (Referencial)</label>
+                  <%= ff.hidden_field :lat, required: true, class: "form-control", :value => '-12.0467045' %>
+                  <%= ff.hidden_field :long, required: true, class: "form-control", :value => '-77.042688' %>
+                  <div id="map" class="col-md-12"></div>
+                </div>
+                
+              <% end %>
 
           </div>
         </div>
@@ -57,14 +54,12 @@
                   
                   <p>¿Dónde está su plaza de aparcamiento?</p>
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Tipo de espacio</label>
-                    <select class="form-control"><option> -- Tipo de espacio -- </option></select>
+                    <label for="space_type_id">Tipo de Espacio</label>
+                    <%= f.collection_select(:space_type_id, SpaceType.all, :id, :nom_space_type, {include_blank: "Seleccione el Tipo de Espacio"},  {class: "form-control"}) %>
                   </div>
                   
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Número de Espacio</label>
-                    <input type="text" class="form-control" name="optionsRadios" id="optionsRadios1" value="1">
-                  </div>
+                  
+                  <%= f.input :num_espacio, label: 'Número de Espacio:', required: false, class: "form-control", placeholder: "Ingrese número de espacios" %>
                   
                   
                   <div class="form-group">
@@ -123,21 +118,20 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8">
-
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Descripción</label>
-                    <textarea class="form-control" rows="3" placeholder="Ingrese la descripción"></textarea>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Recomendaciones</label>
-                    <textarea class="form-control" rows="3" placeholder="Recomendaciones"></textarea>
-                  </div>
-
+            
+              <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <%= f.text_area :descripcion, label: 'Descripción:', required: false, class: "form-control", placeholder: "Ingrese la descripción", row: "3" %>
+              </div>
+              
+              <div class="form-group">
+                <label for="observacion">Recomendaciones</label>
+                <%= f.text_area :observacion, label: 'Recomendaciones:', required: false, class: "form-control", placeholder: "Ingrese las recomendaciones", row: "3" %>
+              </div>
           </div>
         </div>
       </div>
     </div>
   </div>
   
-  </form>
+<% end %>

@@ -18,23 +18,23 @@ UbCountry.create([
 ]);
 
 # Creando Departamentos
-UbDepartment.create([
-    {ub_country_id: 1, nom_dpto: "Lima"},
-    {ub_country_id: 1, nom_dpto: "Callao"}
-]);
+#UbDepartment.create([
+#    {ub_country_id: 1, nom_dpto: "Lima"},
+#    {ub_country_id: 1, nom_dpto: "Callao"}
+#]);
 
 # Creando Provincias
-UbProvince.create([
-    {ub_department_id: 1, nom_prov: "Lima"},
-    {ub_department_id: 1, nom_prov: "Chosica"}
-]);
+#UbProvince.create([
+#    {ub_department_id: 1, nom_prov: "Lima"},
+#    {ub_department_id: 1, nom_prov: "Chosica"}
+#]);
 
 # Creando Distritos
-UbDistrict.create([
-    {ub_department_id: 1, ub_province_id: 1, nom_dist: "San Isidro"},
-    {ub_department_id: 1, ub_province_id: 1, nom_dist: "San Miguel"},
-    {ub_department_id: 1, ub_province_id: 1, nom_dist: "Surco"}
-]);
+#UbDistrict.create([
+#    {ub_department_id: 1, ub_province_id: 1, nom_dist: "San Isidro"},
+#    {ub_department_id: 1, ub_province_id: 1, nom_dist: "San Miguel"},
+#    {ub_department_id: 1, ub_province_id: 1, nom_dist: "Surco"}
+#]);
 
 # Creando el Tipo de Espacio
 SpaceType.create([

@@ -4,6 +4,7 @@ class CreateSpaces < ActiveRecord::Migration
       t.string :nom_space
       t.string :descripcion
       t.string :observacion
+      t.string :num_espacio
       t.timestamps null: false
     end
   end

@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 20160614061804) do
     t.string   "nom_space",            limit: 255
     t.string   "descripcion",          limit: 255
     t.string   "observacion",          limit: 255
+    t.string   "num_espacio",          limit: 255
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.integer  "type_offer_person_id", limit: 4
