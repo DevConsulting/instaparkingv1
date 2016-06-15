@@ -29,6 +29,14 @@ ActiveRecord::Schema.define(version: 20160615204148) do
 
   add_index "cars", ["car_type_id"], name: "index_cars_on_car_type_id", using: :btree
 
+  create_table "contactos", force: :cascade do |t|
+    t.string   "nombre",     limit: 255
+    t.text     "correo",     limit: 65535
+    t.text     "mensaje",    limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
   create_table "phone_types", force: :cascade do |t|
     t.string   "nombre_tip_telefono", limit: 255
     t.datetime "created_at",                      null: false
@@ -53,6 +61,9 @@ ActiveRecord::Schema.define(version: 20160615204148) do
     t.string   "descripcion",      limit: 255
     t.string   "direccion",        limit: 255
     t.string   "avatar",           limit: 255
+    t.integer  "id_dpto",          limit: 4
+    t.integer  "id_prov",          limit: 4
+    t.integer  "id_dist",          limit: 4
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
     t.integer  "user_id",          limit: 4

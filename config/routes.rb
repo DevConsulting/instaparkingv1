@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :contactos
   devise_for :users
   
   root 'pages#index' #get 'pages/index'
@@ -16,8 +17,11 @@ Rails.application.routes.draw do
   
   get 'reservations/thank_you_page'
   
+  get 'pages/gracias'
   
-    # Aplicando Recursos 
+  get 'pages/busqueda'
+  
+  # Aplicando Recursos 
   
   # Perfiles
   resources :profiles

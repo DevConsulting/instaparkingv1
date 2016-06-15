@@ -1,1 +1,162 @@
-<p>Find me in app/views/pages/index.html.erb</p>
+<!-- PAGINA INDEX - Buscador  -->
+<div>
+  <div id="bg">
+  <div class="row row-centered ">
+    <div class="col-lg-12">
+      <section class="buscador">
+        <div id="uc_header1_updUBuscador">
+        	<h2>BUSCA TU ESPACIO</h2>
+        		<div class="pestanas">
+        		  <a href="#" class="activo" data-bloque=".por-direccion" id="tab1">Buscar por dirección</a>
+        		  <a href="#" data-bloque=".por-distrito" id="tab2">Buscar por distrito</a>
+            </div>
+        		<div class="bloque por-direccion">
+        			<div class="center-block formulario">
+        				<div class="form-group center-block">
+                  <input name="uc_header1$txtDireccionBuscador" type="text" id="txtDireccionBuscador" class="inputbox form-control" placeholder="Ingrese dirección">
+                </div>
+                  <!--<input type="image" name="uc_header1$imbBuscar2" id="uc_header1_imbBuscar2" class="submit center-block" src="img/buscar.jpg" onclick="return validarTab1();" style="border-width:0px;">-->
+                  <!--<button type="button" class="btn btn-default">-->
+                  <button type="button" name="uc_header1$imbBuscar2" id="uc_header1_imbBuscar2" class="btn btn-default" onclick="return validarTab1();">
+                    
+                  <input type="button" onclick=" location.href='pages/busqueda' " value="Buscar" name="boton" /> 
+                    
+                  </button>
+                  
+                  
+                  
+                  
+              </div>
+            </div>
+            <div class="bloque por-distrito" style="display:none">
+        			<div class="center-block formulario">
+        				<div class="row">
+               	  <div class="col-sm-4">
+        					  <div class="form-group">
+                      <select name="uc_header1$ddlDepartamento" onchange="javascript:setTimeout('__doPostBack(\'uc_header1$ddlDepartamento\',\'\')', 0)" id="uc_header1_ddlDepartamento" class="form-control inputselectbox">
+        							  <option selected="selected" value="0">Departamento</option>
+        									<option value="040000">AREQUIPA</option>
+        									<option value="060000">CAJAMARCA</option>
+        									<option value="070000">CALLAO</option>
+        									<option value="080000">CUSCO</option>
+        									<option value="110000">ICA</option>
+        									<option value="150000">LIMA</option>
+        									<option value="200000">PIURA</option>
+        								</select>
+        							</div>
+        						</div>
+        						<div class="col-sm-4">
+        							<div class="form-group">
+        								<select name="uc_header1$ddlProvincia" onchange="javascript:setTimeout('__doPostBack(\'uc_header1$ddlProvincia\',\'\')', 0)" id="uc_header1_ddlProvincia" class="form-control inputselectbox">
+        									<option selected="selected" value="0">Provincia</option>
+        								</select>
+        							</div>
+        						</div>
+        						<div class="col-sm-4">
+        							<div class="form-group">
+        								<select name="uc_header1$ddlDistrito" id="uc_header1_ddlDistrito" class="form-control inputselectbox">
+        									<option value="0">Distrito</option>
+        								</select>
+        							</div>
+        						</div>
+        					</div>
+                  <!--<input type="image" name="uc_header1$imbBuscar" id="uc_header1_imbBuscar" class="submit center-block" onclick="return validarTab2(uc_header1_ddlDepartamento,uc_header1_ddlProvincia,uc_header1_ddlDistrito);" style="border-width:0px;">-->
+                  <!--<button type="button" class="btn btn-default">-->
+                  <button type="button" name="uc_header1$imbBuscar" id="uc_header1_imbBuscar" class="btn btn-default" onclick="return validarTab2(uc_header1_ddlDepartamento,uc_header1_ddlProvincia,uc_header1_ddlDistrito);">
+                    <span class="glyphicon glyphicon-search"></span>Buscar
+                  </button>
+        					</div>
+        				</div>
+        </div>
+        
+
+      </section>
+      
+      <!--<section class="buscador">-->
+      <!--<h2>Busca tu espacio</h2>
+        <p>Obten promociones y descuentos</p>
+        <form class="form-inline form_buscador">
+          <div class="form-group">
+            <input class="form-control input_buscador">
+            <button class="btn btn-default">Buscar</button>  
+          </div>
+        </form>-->
+      <!--</section>-->
+    </div>
+  </div>
+</div>
+</div>
+<!-- / Buscador  -->
+<!-- Slider  -->
+<div class="row row-centered block_slider">
+  <h2>Nuestros<br>Establecimientos</h2>
+  <div class="col-sm-5 slider">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+      </ol>
+    
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <%= image_tag "estacion1.jpg", html: { alt: "estacion 1" } %>
+          <div class="carousel-caption">
+            Imagen 1
+          </div>
+        </div>
+        <div class="item">
+          <%= image_tag "estacion2.jpg", html: { alt: "estacion 2" } %>
+          <div class="carousel-caption">
+            Imagen 2
+          </div>
+        </div>
+        <div class="item">
+          <%= image_tag "estacion3.jpg", html: { alt: "estacion 3" } %>
+          <div class="carousel-caption">
+            Imagen 3
+          </div>
+        </div>
+      </div>
+    
+      <!-- Controls -->
+      <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+
+  </div>
+</div>
+<!-- /Slider  -->
+
+<!-- Servicios -->
+<div class="row block_servicios">
+  <div class="col-lg-12">
+    <h2>Nuestros Servicios</h2>
+  </div>
+  <div class="col-sm-6 col-md-6 block_servicio_1">
+       <%= image_tag "estacion4.jpg", html: { alt: "reserva" } %>
+      <div class="caption">
+        <h3>Reservar tu espacio</h3>
+        <p>Líderes en el mercado de estacionamientos y servicio de Valet Parking en el Perú, con más de 50 años de experiencia, más de 215 operaciones a nivel nacional y más de 1,800 colaboradores que avalan nuestra calidad de servicio</p>
+        <p><a href="#" class="btn btn-default" role="button">Ver más</a></p>
+      </div>
+  </div>
+
+  <div class="col-sm-6 col-md-6 block_servicio_2">
+      <%= image_tag "mapa.jpg", html: { alt: "oferta" } %>
+      <div class="caption">
+        <h3>Ofertar tu espacio</h3>
+        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. <br>Donec id elit non mi porta gravida at eget metus. Nullam id dolor <br>id nibh ultricies vehicula ut id elit.Button</p>
+        <p><a href="#" class="btn btn-default" role="button">Ver más</a></p>
+      </div>
+  </div>
+</div>
+<!-- /Servicios -->
