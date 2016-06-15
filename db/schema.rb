@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160615181200) do
+ActiveRecord::Schema.define(version: 20160615202526) do
+
+  create_table "car_types", force: :cascade do |t|
+    t.string   "nom_type",   limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "cars", force: :cascade do |t|
+    t.string   "modelo",      limit: 255
+    t.string   "placa",       limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "car_type_id", limit: 4
+  end
+
+  add_index "cars", ["car_type_id"], name: "index_cars_on_car_type_id", using: :btree
 
   create_table "phone_types", force: :cascade do |t|
     t.string   "nombre_tip_telefono", limit: 255
@@ -51,6 +67,28 @@ ActiveRecord::Schema.define(version: 20160615181200) do
   add_index "profiles", ["ub_district_id"], name: "index_profiles_on_ub_district_id", using: :btree
   add_index "profiles", ["ub_province_id"], name: "index_profiles_on_ub_province_id", using: :btree
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
+
+  create_table "reservation_cars", force: :cascade do |t|
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "reservation_id", limit: 4
+    t.integer  "car_id",         limit: 4
+  end
+
+  add_index "reservation_cars", ["car_id"], name: "index_reservation_cars_on_car_id", using: :btree
+  add_index "reservation_cars", ["reservation_id"], name: "index_reservation_cars_on_reservation_id", using: :btree
+
+  create_table "reservations", force: :cascade do |t|
+    t.string   "f_inicio",   limit: 255
+    t.string   "f_fin",      limit: 255
+    t.string   "h_inicio",   limit: 255
+    t.string   "h_fin",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "space_id",   limit: 4
+  end
+
+  add_index "reservations", ["space_id"], name: "index_reservations_on_space_id", using: :btree
 
   create_table "services", force: :cascade do |t|
     t.string   "nom_service", limit: 255
@@ -169,6 +207,7 @@ ActiveRecord::Schema.define(version: 20160615181200) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "cars", "car_types"
   add_foreign_key "profile_phones", "phone_types"
   add_foreign_key "profile_phones", "profiles"
   add_foreign_key "profiles", "ub_countries"
@@ -176,6 +215,9 @@ ActiveRecord::Schema.define(version: 20160615181200) do
   add_foreign_key "profiles", "ub_districts"
   add_foreign_key "profiles", "ub_provinces"
   add_foreign_key "profiles", "users"
+  add_foreign_key "reservation_cars", "cars"
+  add_foreign_key "reservation_cars", "reservations"
+  add_foreign_key "reservations", "spaces"
   add_foreign_key "space_characteristics", "services"
   add_foreign_key "space_characteristics", "spaces"
   add_foreign_key "space_ubications", "spaces"
