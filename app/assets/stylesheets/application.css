@@ -13,3 +13,232 @@
  *= require_tree .
  *= require_self
  */
+body {
+  /* Margin bottom by footer height */
+  margin:0px;
+  padding: 0px;
+  height:auto;
+  background-color: #F1EFEF;
+  font-family: 'DobraBook','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+
+#bg {
+    width: 100%;
+    height: 799px;
+    margin: 0 auto;
+    background-image: url(/assets/car-image2.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+}
+
+.container_main{
+    height:100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    min-height: 100%;
+    width: 100%;
+}
+
+.block_buscador{
+    padding-top: 25px;
+    padding-bottom: 35px;
+}
+
+/*.block_buscador input {
+    width: 174px;
+    float: left;
+    margin-right: 5px;
+}*/
+
+.block_buscador .form-group {
+    display: inline-block;
+}
+
+.block_slider {
+    padding-top: 25px;
+    padding-bottom: 35px;
+    background-color: #FFFFFF;
+}
+
+.block_slider .slider{
+    float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.block_servicios {
+    padding-top: 25px;
+    padding-bottom: 35px;
+}
+
+.block_servicios{
+    text-align: center;
+}
+
+
+.footer {
+    bottom: 0;
+    width: 100%;
+    background-color: #f5f5f5;
+}
+
+.footer p {
+    padding-top: 15px;
+    padding-left: 15px;
+}
+
+.center-block {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.por-direccion .form-group {
+    width: 90%;
+}
+
+.form-control {
+    border: none;
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+/* Medias Queries */
+@media (min-width: 768px) { 
+    .container_main{
+        height:100%;
+    }
+    
+    .buscador {
+	background-color:rgba(0,0,0,.4);
+	/* bottom:12%; */
+	/* left:50%; */
+	 margin-left:25%; 
+	/* position:absolute; */
+	margin-top: 165px;
+	width:640px;
+	overflow: hidden;
+}
+	
+	.buscador h2 {
+		color:#ffffff;
+		font-family:'DobraMedium';
+		font-size:40px;
+		text-align:center;
+		text-transform:uppercase
+	}
+	
+	.buscador .pestanas {
+		text-align:center;
+		width:100%
+	}
+	
+	.buscador .pestanas a {
+		background-color:#b8b8b6;
+		color:#fff;
+		display:inline-block;
+		font-family:'DobraMedium';
+		font-size:16px;
+		height:29px;
+		letter-spacing:1px;
+		line-height:27px;
+		margin-bottom:11px;
+		text-transform:none;
+		width:183px
+	}
+	.buscador .pestanas a:hover,
+	.buscador .pestanas a.activo {
+		background-color:#0063a6
+	}
+	.buscador .formulario {
+		width:92%;
+		padding-bottom: 32px;
+	}
+	.buscador .inputbox {
+		background-color:#fff;
+		background-image:url('/assets/buscar-input.png');
+		background-position:98% 50%;
+		background-repeat:no-repeat;
+		color:#8f8f8f;
+		font-family:'DobraBook';
+		font-size:14px;
+		height:29px;
+		line-height:29px
+	}
+	.buscador .inputselectbox {
+		height:29px;
+		padding:2px 12px 2px
+	}
+	
+	.buscador .submit {
+		border:none;
+		color:#fff;
+		font-family:'DobraBold';
+		font-size:16px;
+		margin-bottom:13px;
+		padding:4px 32px 3px 15px;
+		text-transform:uppercase
+	}
+	.por-direccion .form-group {
+		width:50%
+		
+	}
+	
+    .block_buscador{
+        padding-top: 100px;
+        padding-bottom: 150px;
+        display: block;
+    }
+    
+    .block_buscador .inputbox {
+    background-color: #fff;
+    background-image: url('/assets/buscar-input2.png');
+    background-position: 98% 50%;
+    background-repeat: no-repeat;
+    color: #8f8f8f;
+    font-family: 'DobraBook';
+    font-size: 14px;
+    height: 29px;
+    line-height: 29px;
+    width: 50% !important;
+    }
+    
+    .block_buscador .input_buscador{
+        width: 750px !important;
+        min-width: 650px !important;
+    }
+    
+    .block_buscador{
+        padding-top: 100px;
+        padding-bottom: 150px;
+    }
+
+    .block_slider {
+        padding-top: 100px;
+        padding-bottom: 150px;
+        background-color: #FFFFFF;
+    }
+    .block_servicios {
+        padding-top: 100px;
+        padding-bottom: 150px;
+    }
+
+ 
+}
+

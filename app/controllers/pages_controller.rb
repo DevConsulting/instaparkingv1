@@ -17,6 +17,10 @@ class PagesController < ApplicationController
 
   def contact_us
   end
+  
+  def gracias
+  end
+  
 
   def busqueda
   end
