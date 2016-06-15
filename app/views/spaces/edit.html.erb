@@ -1,9 +1,5 @@
-<style>
-  .collection_radio_buttons, .collection_check_boxes{
-    padding-left: 0px !important;
-  }
-</style>
 <%= simple_form_for @space, :html => { :class => 'form-horizontal' } do |f| %>
+
   <div class="panel panel-default">
     <div class="panel-heading">Paso 1: Ubicación del Espacio</div>  
     <div class="panel-body">
@@ -43,14 +39,14 @@
                 </div>
                 
               <% end %>
-
+  
           </div>
         </div>
       </div>
     </div>
   </div>
   
-  <div class="panel panel-default">
+   <div class="panel panel-default">
     <div class="panel-heading">Paso 2: Características</div>  
     <div class="panel-body">
       <div class="container">
@@ -79,9 +75,9 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> 
   
-  <div class="panel panel-default">
+    <div class="panel panel-default">
     <div class="panel-heading">Paso 3: Descripción</div>  
     <div class="panel-body">
       <div class="container">
@@ -104,9 +100,9 @@
     </div>
   </div>
   
-        <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-primary save">Guardar</button>
-      </div>
-      
+  <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+      <button type="submit" class="btn btn-primary save">Guardar</button>
+  </div>
+  
 <% end %>
