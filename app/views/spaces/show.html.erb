@@ -1,0 +1,146 @@
+  <style>
+    .caracteristicas{padding-left: 16px;}
+  </style>
+  <div class="panel panel-default">
+    <div class="panel-heading">Ubicación del Espacio</div>  
+    <div class="panel-body">
+      
+      <div class="row">
+        <div class="col-md-12">
+          
+          <div>
+            <p><b><%= @space.nom_space %></b></p>
+          </div>
+        </div>
+      </div>                  
+      <div class="row">
+          
+          <div class="col-md-6">
+              <div id="map" class="col-md-12"></div>
+          </div>
+          <div class="col-md-6">
+              <div>
+                <p><label>Dirección:</label> <%= @space.space_ubication.direccion %> </p>
+              </div>
+              <div>
+                <p><label>Departamento:</label> <%= @space.space_ubication.ub_department.nom_dpto %></p>
+              </div>
+              <div>
+                <p><label>Provincia:</label> <%= @space.space_ubication.ub_province.nom_prov %></p>
+              </div>
+              <div>
+                <p><label>Distrito:</label> <%= @space.space_ubication.ub_district.nom_dist %></p>
+              </div>
+              <div class="row">
+                <div class="col-md-3">
+                  <p><label>Precio</label></p>
+                  <p><b>S/. 150.00</b></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3">
+                  <a href="/reservations/new" class="btn btn-primary btn-lg">Reservar</a>
+                </div>
+              </div>
+          </div>
+      </div>
+
+    </div>
+  </div>
+  
+  <div class="panel panel-default">
+    <div class="panel-heading">Características</div>  
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <label>Tipo de espacio:</label>
+                <p><%= @space.space_type.nom_space_type %><p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label>Número de espacio:</label>
+                <p><%= @space.num_espacio %><p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label>Tipo de Persona:</label>
+                <p><%= @space.type_offer_person.nom_type_offer %><p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label>Características:</label>
+                <ul class="caracteristicas">
+                  <% @space.space_characteristics.each do |p| %>
+                      <li><%= p.service.nom_service %></li>
+                  <% end %>
+                </ul>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+  <div class="panel panel-default">
+    <div class="panel-heading">Descripción</div>  
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <label>Descripción:</label>
+                <p><%= @space.descripcion %><p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label>Recomendaciones:</label>
+                <p><%= @space.observacion %><p>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+      
+    <script type="text/javascript">
+
+      // This example displays a marker at the center of Australia.
+      // When the user clicks the marker, an info window opens.
+      
+      function initMap() {
+        var uluru = {lat: <%= @space.space_ubication.lat %>, lng: <%= @space.space_ubication.long %>};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: uluru
+        });
+      
+        var contentString = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading"><%= @space.nom_space %></h1>'+
+            '<div id="bodyContent">'+
+            '<p><%= @space.space_ubication.direccion %></p>'+
+            '</div>'+
+            '</div>';
+      
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+      
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map,
+          title: 'Uluru (Ayers Rock)'
+        });
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+      }
+
+      /*google.maps.event.addListener(marker, "dragend", function (event) {
+          console.log(event.latLng.lat());
+          console.log(event.latLng.lng());
+      });*/
+                                    
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9P73aj_uKJWCsTwxS-lq1SiE15ciWHDk&signed_in=true&callback=initMap"></script>

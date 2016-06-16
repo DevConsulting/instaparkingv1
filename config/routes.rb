@@ -12,15 +12,48 @@ Rails.application.routes.draw do
   get 'pages/tos'
 
   get 'pages/contact_us'
+
+  get 'spaces/list/:id/' => "spaces#list"
   
-  get 'pages/pruebas'
+  get 'reservations/thank_you_page'
   
   get 'pages/gracias'
   
+  get 'pages/busqueda'
   
-  # Aplicando Rercursos
+  # Aplicando Recursos 
+  
+  # Perfiles
   resources :profiles
   
+  # Ubigeo Países
+  resources :ub_countries
+  
+  # Ubigeo - Departamentos
+  resources :ub_departments
+  
+  # Ubigeo - Provincias
+  resources :ub_provinces
+  
+  # Teléfonos
+  resources :profile_phones
+  
+  # Espacios
+  resources :spaces
+  
+  # Reservas
+  resources :reservations
+  
+  # Ubigeo - Lista de Departamentos
+  get "/deparments/:country/" => "ub_departments#show"
+  
+  # Ubigeo - Lista de Provincias
+  get "/provinces/:department/" => "ub_provinces#showProvinces"
+  
+  # Ubigeo - LIsta de Distritos
+  get "/districts/:department/:province/" => "ub_districts#showDistricts"
+  
+  get "/districts/:department/:province/" => "ub_districts#showDistricts"
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

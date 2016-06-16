@@ -1,4 +1,8 @@
 class UbDepartment < ActiveRecord::Base
-    belongs_to :ub_countrys
-    has_many :ub_provinces
+    
+    # Un Perfil tiene un departamento
+    has_one :profiles
+    
+    has_one :space_ubications
+    
 end

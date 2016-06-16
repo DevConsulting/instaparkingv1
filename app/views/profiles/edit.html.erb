@@ -15,25 +15,33 @@
     </div>
   </div>
 
-  <div class="panel panel-default">
+<div class="panel panel-default">
     <div class="panel-heading">Información de Ubicación</div>
     <div class="panel-body">
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                  
                   <%= f.input :direccion, label: 'Dirección', required: true %>
                   <%= error_span(@profile[:direccion]) %>
-                 
-                  <%= f.input :id_dpto, :collection => [['Lima',1],['Callao',2]], label: 'Departamento' %>
-                  <%= error_span(@profile[:id_dpto]) %> 
+                   
+                  <%= 
+                    f.association :ub_department, 
+                    label: 'Departamento', 
+                    :include_blank => true, 
+                    :label_method => lambda { |ub_department| "#{ub_department.nom_dpto}"}
+                  %> 
                   
-                  <%= f.input :id_prov, :collection => [['Lima',1],['Callao',2]], label: 'Provincia' %>
-                  <%= error_span(@profile[:id_prov]) %> 
+                  <%= f.input :ub_country_id, :as => :hidden, :input_html => { :value => 1 } %>
                   
-                  <%= f.input :id_dist, :collection => [['San Juan de Lurigancho',1],['San Isidro',2]], label: 'Distrito' %>
-                  <%= error_span(@profile[:id_dist]) %>
+                  <%= error_span(@profile[:ub_department_id]) %> 
+
+                  <%= f.input :ub_province_id, :collection => [], label: 'Provincia', :input_html => { :'data-id' => @profile[:ub_province_id] }  %>
                   
+                  <%= error_span(@profile[:ub_province_id]) %> 
+                  
+                  <%= f.input :ub_district_id, :collection => [], label: 'Distrito', :input_html => { :'data-id' => @profile[:ub_district_id] } %>
+ 
+                  <%= error_span(@profile[:ub_district_id]) %>
                 </div>
             </div>  
         </div>  
@@ -45,14 +53,22 @@
     <div class="panel-body">
         <div class="container">
             <div class="row">
+              <div class="col-md-8">
+                <a href="#" data-id="" data-type="" data-num="" data-id-profile="<%= @profile[:id] %>" class="new">Agregar</a>  
+              </div>  
+            </div>
+            <div class="row">
                 <div class="col-md-8">
-
-                  <%= f.fields_for :profile_phones do |ff| %>
-                      <% phone_type = PhoneType.find(ff.object.phone_type_id) %>
-                      <%= ff.input :id, as: :hidden %>
-                      <%= ff.input :num_telefono, label: phone_type.nombre_tip_telefono, input_html: { id: ff.object.id }  %>
-                  <% end %>
-                  
+                  <table class="table table-bordered">
+                    <% @profile.profile_phones.each do |p| %>
+                        <tr>
+                          <td class="phone_type_<%= p.id %>"><%= p.phone_type.nombre_tip_telefono %></td>
+                          <td class="num_telefono_<%= p.id %>"><%= p.num_telefono %></td>
+                          <td align="center"><a href="#" data-id="<%= p.id %>" data-type="<%= p.phone_type_id %>" data-num="<%= p.num_telefono %>" data-id-profile="<%= @profile[:id] %>" class="edit">Editar</a></td><!-- <span class="glyphicon glyphicon-pencil"></span> -->
+                          <td align="center"><a href="#" data-id="<%= p.id %>" data-type="<%= p.phone_type_id %>" data-num="<%= p.num_telefono %>" data-id-profile="<%= @profile[:id] %>"class="remove">Eliminar</a></td><!-- <span class="glyphicon glyphicon-remove-circle"></span> -->
+                        </tr>
+                    <% end %>
+                  </table>
                 </div>
             </div>  
         </div>  
@@ -69,3 +85,36 @@
   </div>
   
 <% end %> 
+
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Editar número de teléfonos</h4>
+      </div>
+      <div class="modal-body">
+ 
+        <div class="form-group">
+          <label for="phone_type_id">Tipo</label>
+          <select id="phone_type_id" name="phone_type_id" class="form-control">
+            <option value=""> -- Seleccione teléfono -- </option>
+            <% PhoneType.all.each do |type| %>
+            <option value="<%= type.id %>"><%= type.nombre_tip_telefono %></option>
+            <% end %>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="num_telefono">Número</label>
+          <input type="text" class="form-control" id="num_telefono" name="num_telefono" placeholder="Número">
+        </div> 
+
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary save">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

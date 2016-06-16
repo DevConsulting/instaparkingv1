@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160604174855) do
+ActiveRecord::Schema.define(version: 20160615204148) do
+
+  create_table "car_types", force: :cascade do |t|
+    t.string   "nom_type",   limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "cars", force: :cascade do |t|
+    t.string   "modelo",      limit: 255
+    t.string   "placa",       limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "car_type_id", limit: 4
+  end
+
+  add_index "cars", ["car_type_id"], name: "index_cars_on_car_type_id", using: :btree
 
   create_table "contactos", force: :cascade do |t|
     t.string   "nombre",     limit: 255
@@ -71,6 +87,92 @@ ActiveRecord::Schema.define(version: 20160604174855) do
   add_index "profiles", ["ub_province_id"], name: "index_profiles_on_ub_province_id", using: :btree
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
+  create_table "reservation_cars", force: :cascade do |t|
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "reservation_id", limit: 4
+    t.integer  "car_id",         limit: 4
+  end
+
+  add_index "reservation_cars", ["car_id"], name: "index_reservation_cars_on_car_id", using: :btree
+  add_index "reservation_cars", ["reservation_id"], name: "index_reservation_cars_on_reservation_id", using: :btree
+
+  create_table "reservations", force: :cascade do |t|
+    t.string   "f_inicio",   limit: 255
+    t.string   "f_fin",      limit: 255
+    t.string   "h_inicio",   limit: 255
+    t.string   "h_fin",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "space_id",   limit: 4
+    t.integer  "user_id",    limit: 4
+  end
+
+  add_index "reservations", ["space_id"], name: "index_reservations_on_space_id", using: :btree
+  add_index "reservations", ["user_id"], name: "index_reservations_on_user_id", using: :btree
+
+  create_table "services", force: :cascade do |t|
+    t.string   "nom_service", limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "space_characteristics", force: :cascade do |t|
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "service_id", limit: 4
+    t.integer  "space_id",   limit: 4
+  end
+
+  add_index "space_characteristics", ["service_id"], name: "index_space_characteristics_on_service_id", using: :btree
+  add_index "space_characteristics", ["space_id"], name: "index_space_characteristics_on_space_id", using: :btree
+
+  create_table "space_types", force: :cascade do |t|
+    t.string   "nom_space_type", limit: 255
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  create_table "space_ubications", force: :cascade do |t|
+    t.string   "direccion",        limit: 255
+    t.string   "lat",              limit: 255
+    t.string   "long",             limit: 255
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "space_id",         limit: 4
+    t.integer  "ub_country_id",    limit: 4
+    t.integer  "ub_department_id", limit: 4
+    t.integer  "ub_province_id",   limit: 4
+    t.integer  "ub_district_id",   limit: 4
+  end
+
+  add_index "space_ubications", ["space_id"], name: "index_space_ubications_on_space_id", using: :btree
+  add_index "space_ubications", ["ub_country_id"], name: "index_space_ubications_on_ub_country_id", using: :btree
+  add_index "space_ubications", ["ub_department_id"], name: "index_space_ubications_on_ub_department_id", using: :btree
+  add_index "space_ubications", ["ub_district_id"], name: "index_space_ubications_on_ub_district_id", using: :btree
+  add_index "space_ubications", ["ub_province_id"], name: "index_space_ubications_on_ub_province_id", using: :btree
+
+  create_table "spaces", force: :cascade do |t|
+    t.string   "nom_space",            limit: 255
+    t.string   "descripcion",          limit: 255
+    t.string   "observacion",          limit: 255
+    t.string   "num_espacio",          limit: 255
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "type_offer_person_id", limit: 4
+    t.integer  "space_type_id",        limit: 4
+    t.integer  "created_by",           limit: 4
+  end
+
+  add_index "spaces", ["space_type_id"], name: "index_spaces_on_space_type_id", using: :btree
+  add_index "spaces", ["type_offer_person_id"], name: "index_spaces_on_type_offer_person_id", using: :btree
+
+  create_table "type_offer_people", force: :cascade do |t|
+    t.string   "nom_type_offer", limit: 255
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
   create_table "ub_countries", force: :cascade do |t|
     t.string   "nom_pais",   limit: 255
     t.datetime "created_at",             null: false
@@ -125,6 +227,7 @@ ActiveRecord::Schema.define(version: 20160604174855) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "cars", "car_types"
   add_foreign_key "profile_phones", "phone_types"
   add_foreign_key "profile_phones", "profiles"
   add_foreign_key "profiles", "ub_countries"
@@ -132,6 +235,19 @@ ActiveRecord::Schema.define(version: 20160604174855) do
   add_foreign_key "profiles", "ub_districts"
   add_foreign_key "profiles", "ub_provinces"
   add_foreign_key "profiles", "users"
+  add_foreign_key "reservation_cars", "cars"
+  add_foreign_key "reservation_cars", "reservations"
+  add_foreign_key "reservations", "spaces"
+  add_foreign_key "reservations", "users"
+  add_foreign_key "space_characteristics", "services"
+  add_foreign_key "space_characteristics", "spaces"
+  add_foreign_key "space_ubications", "spaces"
+  add_foreign_key "space_ubications", "ub_countries"
+  add_foreign_key "space_ubications", "ub_departments"
+  add_foreign_key "space_ubications", "ub_districts"
+  add_foreign_key "space_ubications", "ub_provinces"
+  add_foreign_key "spaces", "space_types"
+  add_foreign_key "spaces", "type_offer_people"
   add_foreign_key "ub_departments", "ub_countries"
   add_foreign_key "ub_districts", "ub_departments"
   add_foreign_key "ub_districts", "ub_provinces"

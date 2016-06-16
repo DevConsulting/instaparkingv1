@@ -1,5 +1,3 @@
-<% @profile.inspect %>
-
 <div class="panel panel-default">
   <div class="panel-heading">Información Personal</div>  
   <div class="panel-body">
@@ -33,6 +31,24 @@
         <div class="col-md-12">
             <label>Dirección:</label>
             <%= @profile.direccion %>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label>Departamento:</label>
+            <%= @profile.ub_department.nom_dpto %>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label>Provincia:</label>
+            <%= @profile.ub_province.nom_prov %>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label>Distrito:</label>
+            <%= @profile.ub_district.nom_dist %>
         </div>
     </div>
   </div>

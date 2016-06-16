@@ -1,0 +1,154 @@
+<%= simple_form_for @space, :html => { :class => 'form-horizontal' } do |f| %>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">Paso 1: Ubicación del Espacio</div>  
+    <div class="panel-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+              <p>¿Dónde está su plaza de aparcamiento?</p>
+              
+              <%= f.input :created_by, :as => :hidden, :input_html => { :value => current_user.id } %>
+              
+              <%= f.input :nom_space, label: 'Nombre del espacio:', required: false, class: "form-control", placeholder: "Ingrese el nombre del espacio" %>
+              
+              <%= f.fields_for :space_ubication do |ff| %>
+                <div class="form-group">
+                  <label for="direccion">Dirección</label>
+                  <%= ff.text_field :direccion, class: "form-control", placeholder: "Ingrese la dirección" %>
+                </div>
+                
+                <div class="form-group">
+                  <label for="ub_department_id">Departamento</label>
+                  <%= ff.collection_select(:ub_department_id, UbDepartment.all, :id, :nom_dpto, {include_blank: "Seleccione el Departamento"},  {class: "form-control"}) %>
+                </div>
+                
+                <div class="form-group">
+                  <label for="ub_country_id">Provincia</label>
+                  <%= ff.collection_select(:ub_province_id, UbProvince.all, :id, :nom_prov, {include_blank: "Seleccione la Provincia"},  {class: "form-control"}) %>
+                </div>
+                
+                <div class="form-group">
+                  <label for="ub_district_id">Distrito</label>
+                  <%= ff.collection_select(:ub_district_id, UbDistrict.all, :id, :nom_dist, {include_blank: "Seleccione el Distrito"},  {class: "form-control"}) %>
+                </div>
+                
+                <div class="form-group">
+                  <label for="">Mapa (Referencial)</label>
+                  <%= ff.hidden_field :lat, required: true, class: "form-control", :value => '-12.0467045' %>
+                  <%= ff.hidden_field :long, required: true, class: "form-control", :value => '-77.042688' %>
+                  <div id="map" class="col-md-12"></div>
+                </div>
+                
+              <% end %>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+   <div class="panel panel-default">
+    <div class="panel-heading">Paso 2: Características</div>  
+    <div class="panel-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+              <p>¿Dónde está su plaza de aparcamiento?</p>
+              
+              <div class="form-group">
+                <label for="space_type_id">Tipo de Espacio</label>
+                <%= f.collection_select(:space_type_id, SpaceType.all, :id, :nom_space_type, {include_blank: "Seleccione el Tipo de Espacio"},  {class: "form-control"}) %>
+              </div>
+              
+              <%= f.input :num_espacio, label: 'Número de Espacio:', required: false, class: "form-control", placeholder: "Ingrese número de espacios" %>
+              
+              <div class="form-group">
+                  <label for="type_offer_person_id">Persona</label>
+                  <%= f.collection_radio_buttons(:type_offer_person_id, TypeOfferPerson.all, :id, :nom_type_offer, {:item_wrapper_class => 'radio'}, {:class => "label_option" }) %>
+              </div>
+              
+              <div class="form-group">
+                <label for="service_ids">Características</label>
+                <%= f.collection_check_boxes(:service_ids, Service.all, :id, :nom_service , {:item_wrapper_class => 'checkbox', :class => "label_option"}, { :multiple => true }) %>
+              </div>
+              
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+  
+    <div class="panel panel-default">
+    <div class="panel-heading">Paso 3: Descripción</div>  
+    <div class="panel-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            
+              <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <%= f.text_area :descripcion, label: 'Descripción:', required: false, class: "form-control", placeholder: "Ingrese la descripción", row: "3" %>
+              </div>
+              
+              <div class="form-group">
+                <label for="observacion">Recomendaciones</label>
+                <%= f.text_area :observacion, label: 'Recomendaciones:', required: false, class: "form-control", placeholder: "Ingrese las recomendaciones", row: "3" %>
+              </div>
+              
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal-footer">
+      <a class="btn btn-default" href="/spaces/list/<%= current_user.id %>" role="button">Retornar</a>
+      <button type="submit" class="btn btn-primary save">Guardar</button>
+  </div>
+  
+<% end %>
+
+    <script type="text/javascript">
+
+      // This example displays a marker at the center of Australia.
+      // When the user clicks the marker, an info window opens.
+      
+      function initMap() {
+        var uluru = {lat: <%= @space.space_ubication.lat %>, lng: <%= @space.space_ubication.long %>};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: uluru
+        });
+      
+        var contentString = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading"><%= @space.nom_space %></h1>'+
+            '<div id="bodyContent">'+
+            '<p><%= @space.space_ubication.direccion %></p>'+
+            '</div>'+
+            '</div>';
+      
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+      
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map,
+          title: 'Uluru (Ayers Rock)'
+        });
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+      }
+
+      /*google.maps.event.addListener(marker, "dragend", function (event) {
+          console.log(event.latLng.lat());
+          console.log(event.latLng.lng());
+      });*/
+                                    
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9P73aj_uKJWCsTwxS-lq1SiE15ciWHDk&signed_in=true&callback=initMap"></script>
