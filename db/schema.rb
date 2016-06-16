@@ -29,6 +29,22 @@ ActiveRecord::Schema.define(version: 20160615204148) do
 
   add_index "cars", ["car_type_id"], name: "index_cars_on_car_type_id", using: :btree
 
+  create_table "car_types", force: :cascade do |t|
+    t.string   "nom_type",   limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "cars", force: :cascade do |t|
+    t.string   "modelo",      limit: 255
+    t.string   "placa",       limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "car_type_id", limit: 4
+  end
+
+  add_index "cars", ["car_type_id"], name: "index_cars_on_car_type_id", using: :btree
+
   create_table "contactos", force: :cascade do |t|
     t.string   "nombre",     limit: 255
     t.text     "correo",     limit: 65535
@@ -178,9 +194,8 @@ ActiveRecord::Schema.define(version: 20160615204148) do
   add_index "ub_departments", ["ub_country_id"], name: "index_ub_departments_on_ub_country_id", using: :btree
 
   create_table "ub_districts", force: :cascade do |t|
-    t.string   "nom_dist",         limit: 255
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.integer  "ub_department_id", limit: 4
     t.integer  "ub_province_id",   limit: 4
   end
